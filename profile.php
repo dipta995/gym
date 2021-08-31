@@ -23,6 +23,7 @@ include 'layouts/nav.php';
                 <span><b>Gender:</b> <?php echo $value['gender']; ?></span>
                 <span><b>Mobile:</b> <?php echo $value['mobile']; ?></span>
                 <span><b>Present Address:</b> <?php echo $value['address']; ?></span>
+                <img style="height: 60px; width: 60px;" src="" alt="">
 <?php } ?>
             </div>
              
