@@ -8,15 +8,40 @@ class PacageClass extends DB
             $conn = $this->connect();
         }
     
-    // public function check()
-    //     {
-    //       $insert = $this->conn->query("INSERT INTO users (name) VALUES ('John')");
-    //       if ( $insert=== TRUE) {
-    //         echo "New record created successfully";
-    //       } else {
-    //         echo "Error: " . $sql . "<br>" . $conn->error;
-    //       }
-    //     }
+        public function createnewcustomer($data,$package_id){
+            $first_name = mysqli_real_escape_string($this->conn, $data['first_name']);
+            $last_name = mysqli_real_escape_string($this->conn, $data['last_name']);
+            $email = mysqli_real_escape_string($this->conn, $data['email']);
+            $password = "";
+            $dob = mysqli_real_escape_string($this->conn, $data['dob']);
+            $gender = mysqli_real_escape_string($this->conn, $data['gender']);
+            $mobile = mysqli_real_escape_string($this->conn, $data['mobile']);
+            $address = mysqli_real_escape_string($this->conn, $data['address']); 
+            $q = "SELECT * FROM package_table where package_id=$package_id";
+                $res = $this->conn->query($q);
+                $res = mysqli_fetch_assoc($res);
+                $pack_price = $res['price'];
+                $pack_month = $res['month'];
+                $pack_discount = $res['discount'];
+    
+            if (empty($first_name) || empty($last_name) || empty($email) || empty($dob) || empty($gender) || empty($mobile) || empty($address)) {
+                    $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
+                    return $txt;
+            }else{
+               
+
+                    $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobile','$address')";
+                    $result = $this->conn->query($qry);
+                   
+                    $qry1 = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,status)VALUES('$mobile','$package_id','$pack_price','$pack_month','$pack_discount','1')";
+                    $result1 = $this->conn->query($qry1);
+
+                    if($result1){
+                        $txt = "<div class='alert alert-success'>Successfully New Member added</div>";
+                        return $txt;
+                    }
+                }
+        }
         public function insertPackage($data){
           $pack_name = mysqli_real_escape_string($this->conn, $data['pack_name']);
           $details = mysqli_real_escape_string($this->conn, $data['details']);
@@ -131,7 +156,7 @@ class PacageClass extends DB
         }
         public function viewOrderadmin(){
          
-            $qry = "SELECT * FROM order_table INNER JOIN user_table ON order_table.user_id=user_table.user_id INNER JOIN package_table ON order_table.pack_id=package_table.package_id ORDER by status ASC";
+            $qry = "SELECT * FROM order_table INNER JOIN user_table ON order_table.mobile_no=user_table.mobile INNER JOIN package_table ON order_table.pack_id=package_table.package_id ORDER by status ASC";
             $result = $this->conn->query($qry);
             return $result;
         }

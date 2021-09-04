@@ -43,6 +43,7 @@ if(isset($_GET['delPackage'])){
                         <th>Price</th>
                         <th>Discount</th>
                         <th>Action</th>
+                        <th></th>
                     </tr>
                 </thead>
                 </thead>
@@ -63,6 +64,7 @@ if(isset($_GET['delPackage'])){
                             <a href="edit_package.php?packageid=<?php echo $value['package_id'] ;?>" class="btn btn-sm btn-info">Edit</a>
                             <a href="?delPackage=<?php echo $value['package_id'] ;?>" class="btn btn-sm btn-danger">Delete</a>
                         </td>
+                        <td><a href="customeradmit.php?packid=<?php echo $value['package_id'] ;?>" class="btn btn-sm btn-danger">Buy</a></td>
                     </tr>
                     <?php } ?>
                 </tbody>

@@ -71,6 +71,12 @@ $food = new FoodClass();
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="customeradmit.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Customer Maintain</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="food.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Food Menu</span>
