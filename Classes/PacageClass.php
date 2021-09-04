@@ -8,7 +8,7 @@ class PacageClass extends DB
             $conn = $this->connect();
         }
     
-        public function createnewcustomer($data,$package_id){
+        public function createnewcustomer($data,$file,$package_id){
             $first_name = mysqli_real_escape_string($this->conn, $data['first_name']);
             $last_name = mysqli_real_escape_string($this->conn, $data['last_name']);
             $email = mysqli_real_escape_string($this->conn, $data['email']);
@@ -17,6 +17,8 @@ class PacageClass extends DB
             $gender = mysqli_real_escape_string($this->conn, $data['gender']);
             $mobile = mysqli_real_escape_string($this->conn, $data['mobile']);
             $address = mysqli_real_escape_string($this->conn, $data['address']); 
+            $add = "+8801";
+            $mobileno = $add.$mobile;
             $q = "SELECT * FROM package_table where package_id=$package_id";
                 $res = $this->conn->query($q);
                 $res = mysqli_fetch_assoc($res);
@@ -28,12 +30,29 @@ class PacageClass extends DB
                     $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
                     return $txt;
             }else{
-               
+                $permited  = array('jpg', 'jpeg', 'png', 'gif');
+            $file_name = $file['image']['name'];
+            $file_size = $file['image']['size'];
+            $file_temp = $file['image']['tmp_name'];
 
-                    $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobile','$address')";
+            $div            = explode('.', $file_name);
+            $file_ext       = strtolower(end($div));
+            $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
+            $uploaded_image = "img/".$unique_image;
+            $move_image = "img/".$unique_image;
+           
+
+           
+           if(empty($file_ext)){
+                $txt = "<span style='color:red; font-size: 15px;'>Image is required</span>";
+                return $txt;
+           }else{
+                move_uploaded_file($file_temp, $move_image);
+
+                    $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address) values('$first_name','$last_name','$email','$password','$dob','$gender','$$mobileno','$address')";
                     $result = $this->conn->query($qry);
                    
-                    $qry1 = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,status)VALUES('$mobile','$package_id','$pack_price','$pack_month','$pack_discount','1')";
+                    $qry1 = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,status)VALUES('$$mobileno','$package_id','$pack_price','$pack_month','$pack_discount','1')";
                     $result1 = $this->conn->query($qry1);
 
                     if($result1){
@@ -41,6 +60,7 @@ class PacageClass extends DB
                         return $txt;
                     }
                 }
+            }
         }
         public function insertPackage($data){
           $pack_name = mysqli_real_escape_string($this->conn, $data['pack_name']);

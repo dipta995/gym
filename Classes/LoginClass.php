@@ -34,7 +34,7 @@ class LoginClass extends DB
     }
         
     // User registration 
-    public function insertUser($data){
+    public function insertUser($data,$file){
         $first_name = mysqli_real_escape_string($this->conn, $data['first_name']);
         $last_name = mysqli_real_escape_string($this->conn, $data['last_name']);
         $email = mysqli_real_escape_string($this->conn, $data['email']);
@@ -43,17 +43,42 @@ class LoginClass extends DB
         $gender = mysqli_real_escape_string($this->conn, $data['gender']);
         $mobile = mysqli_real_escape_string($this->conn, $data['mobile']);
         $address = mysqli_real_escape_string($this->conn, $data['address']);
+        $def="+8801";
+        $mobileno = $def.$mobile;
 
         if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($dob) || empty($gender) || empty($mobile) || empty($address)) {
                 $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
                 return $txt;
-        }else{
-                $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobile','$address')";
+        }
+        
+        else{
+
+            $permited  = array('jpg', 'jpeg', 'png', 'gif');
+            $file_name = $file['image']['name'];
+            $file_size = $file['image']['size'];
+            $file_temp = $file['image']['tmp_name'];
+
+            $div            = explode('.', $file_name);
+            $file_ext       = strtolower(end($div));
+            $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
+            $uploaded_image = "img/".$unique_image;
+            $move_image = "img/".$unique_image;
+           
+
+           
+           if(empty($file_ext)){
+                $txt = "<span style='color:red; font-size: 15px;'>Image is required</span>";
+                return $txt;
+           }else{
+                move_uploaded_file($file_temp, $move_image);
+           
+                $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address,image) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobileno','$address','$uploaded_image')";
                 $result = $this->conn->query($qry);
                 if($result){
                     $txt = "<div class='alert alert-success'>Successfully inserted</div>";
                     return $txt;
                 }
+            }
             }
     }
 

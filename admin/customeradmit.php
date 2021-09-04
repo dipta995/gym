@@ -5,7 +5,7 @@
      echo "<script> window.location='all_package.php'</script>";
  }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $createPackage = $pack->createnewcustomer($_POST,$packid);
+    $createPackage = $pack->createnewcustomer($_POST,$_FILES,$packid);
 }
 ?>
 <!-- Container Fluid-->
@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo $createPackage;
         }  ?>
         <div class="card-body">
-          <form method="POST">
-<p>Total price:
+          <form method="POST" action="" enctype="multipart/form-data">
+        <p>Total price:
           <?php
             $pack = $pack->viewSinglePackage($packid);
             $data = mysqli_fetch_assoc($pack);
@@ -58,12 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="form-group">
               <label>Gender</label><br>
-              <input name="gender" type="radio" value="male" >Male
+              <input checked name="gender" type="radio" value="male" >Male
               <input name="gender" type="radio" value="female" >Female
             </div>
-            <div class="form-group">
-              <label>Mobile</label>
-              <input name="mobile" type="number" min=0 class="form-control" placeholder="Enter package">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">+8801</span>
+              </div>
+              <input type="number" min=0 class="form-control" placeholder="" name="mobile" aria-label="Username" aria-describedby="basic-addon1">
             </div>
             <div class="form-group">
               <label>Address</label>
@@ -73,8 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <label>Image</label>
               <input name="image" type="file" class="form-control" placeholder="Enter month" min="3">
             </div>
-          
-         
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>

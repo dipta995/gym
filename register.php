@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user'])) {
     $logincheck = $login->userLogin($email,$password, $link);
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
-  $createUser = $create->insertUser($_POST);
+  $createUser = $create->insertUser($_POST,$_FILES);
 }
 ?>
 <!DOCTYPE html>
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
                       echo $createUser;
                     }
                   ?>
-                  <form method="POST" action="">
+                  <form method="POST" action="" enctype="multipart/form-data">
                     <div class="form-group">
                       <label>First Name</label>
                       <input name="first_name" type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter First Name">
@@ -76,16 +76,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
                     </div>
                     <div class="form-group">
                       <label>Gender</label>
-                      <input type="radio" name="gender" value="male">Male
+                      <input type="radio" checked name="gender" value="male">Male
                       <input type="radio" name="gender" value="female">Female
                     </div>
-                    <div class="form-group">
-                      <label>Mobile Number</label>
-                      <input name="mobile" type="number" class="form-control" id="exampleInputPassword" placeholder="Enter Mobile Number">
+                    
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">+8801</span>
+                      </div>
+                      <input type="number" min=0 class="form-control" placeholder="" name="mobile" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <div class="form-group">
                       <label>Address</label>
                       <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Address"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>Image</label>
+                      <input name="image" type="file" class="form-control" id="exampleInputPassword" >
                     </div>
                     <div class="form-group">
                       <button type="submit" name="create" class="btn btn-primary btn-block">Register</button>
