@@ -45,11 +45,30 @@ class LoginClass extends DB
         $address = mysqli_real_escape_string($this->conn, $data['address']);
         $def="+8801";
         $mobileno = $def.$mobile;
+        $query = "SELECT * FROM user_table WHERE email='$email'";
+        $res = $this->conn->query($query);
+        $querya = "SELECT * FROM user_table WHERE  mobile='$mobile'";
+        $resa = $this->conn->query($querya);
+    
 
         if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($dob) || empty($gender) || empty($mobile) || empty($address)) {
                 $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
                 return $txt;
+        }elseif (!preg_match ("/^[a-zA-z]*$/", $first_name) ){
+            $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For First name</span>";
+            return $txt;
+        }elseif (!preg_match ("/^[a-zA-z]*$/", $last_name) ){
+            $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For First name</span>";
+            return $txt;
+        }elseif (mysqli_num_rows($res)>0){
+            $txt = "<span style='color:red; font-size: 15px;'>This Email Already been Registered </span>";
+            return $txt;
         }
+        elseif (mysqli_num_rows($resa)>0){
+            $txt = "<span style='color:red; font-size: 15px;'>This Mobile Number Already been Registered </span>";
+            return $txt;
+        }
+        
         
         else{
 
