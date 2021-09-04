@@ -32,12 +32,13 @@
                         <th>User Name</th>
                         <th>User Mobile</th>
                         <th>Package Name</th>
-                  
+                        <th>Issue at<br>Decline at</th>
                         <th>Month/price</th>
                         <th>Price</th>
+                        <th>Status</th>
                      
                  
-                        <th>Action</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -56,16 +57,30 @@
                         <td><?php echo $value['first_name']; ?></td>
                         <td><?php echo $value['mobile']; ?></td>
                         <td><?php echo $value['pack_name']; ?></td>
+                        <td><?php echo $value['created_at']."<br>".$effectiveDate = date('Y-m-d', strtotime("+".$value['month']." months", strtotime($value['created_at']))); ?></td>
                 
                         <td><?php echo $value['month'].' Month ||'. $value['price']; ?> Taka</td>
                         <td><?php echo $value['price']-($value['price']*($value['discount']/100)); ?> Taka</td>
 
-                       
+                        
                         <td>
                         <?php if ($value['status']==0) { ?>
                             <a href="?confirm=<?php echo $value['order_id']; ?>" class="btn btn-sm btn-info">Confirm</a>
                             
-                      <?php   }elseif($value['status']==1){ echo "Confirm"; } ?>
+                      <?php   }elseif($value['status']==1){ echo "Confirm &"; 
+                    
+                    $date=date("Y-m-d");
+                      if ($effectiveDate< $date) {
+                         
+                         echo "<br>expaired</br>";
+                     }else{ 
+                         
+                         echo "<br>Running</br>"; }
+                    
+                    
+                    
+                    
+                    } ?>
                         </td>
                     </tr>
                     <?php } ?>
