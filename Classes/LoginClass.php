@@ -67,6 +67,12 @@ class LoginClass extends DB
         elseif (mysqli_num_rows($resa)>0){
             $txt = "<span style='color:red; font-size: 15px;'>This Mobile Number Already been Registered </span>";
             return $txt;
+        }elseif ( strlen ($mobile) != 9) {  
+            return "<span style = 'color:red';>Mobile must have 9 digits.</span>";  
+                     
+        }elseif ( strlen ($password) < 6) {  
+            return "<span style = 'color:red';>Password must have 6 digits.</span>";  
+                     
         }
         
         

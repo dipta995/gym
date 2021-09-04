@@ -17,6 +17,8 @@ class PacageClass extends DB
             $gender = mysqli_real_escape_string($this->conn, $data['gender']);
             $mobile = mysqli_real_escape_string($this->conn, $data['mobile']);
             $address = mysqli_real_escape_string($this->conn, $data['address']); 
+
+            
             $add = "+8801";
             $mobileno = $add.$mobile;
             $query = "SELECT * FROM user_table WHERE email='$email'";
@@ -46,7 +48,13 @@ class PacageClass extends DB
                     elseif (mysqli_num_rows($resa)>0){
                         $txt = "<span style='color:red; font-size: 15px;'>This Mobile Number Already been Registered </span>";
                         return $txt;
-                    }else{
+                    }elseif ( strlen ($mobile) != 9) {  
+                        return "<span style = 'color:red';>Mobile must have 9 digits.</span>";  
+                                 
+                    }
+                    
+                    
+                    else{
                 $permited  = array('jpg', 'jpeg', 'png', 'gif');
             $file_name = $file['image']['name'];
             $file_size = $file['image']['size'];
