@@ -8,7 +8,7 @@ if ($_SESSION['loginauth']!='user') {
     header("Location:login.php?lastlink=$link");
 }
 if ($_SERVER['REQUEST_METHOD'] =='POST') {
-    $addPack = $pack->ApplyPack($_POST,$_GET['package_id'],$_SESSION['user_id']);
+    $addPack = $pack->ApplyPack($_POST,$_GET['package_id'],$_SESSION['mobile']);
 }
 ?>
 <div class="container" style="padding-top: 100px;">

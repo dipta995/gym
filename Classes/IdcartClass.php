@@ -18,7 +18,7 @@ class IdcartClass extends DB
     //       }
     //     }
         public function generateidcart($orderid){
-            $qry = "SELECT * FROM order_table LEFT JOIN package_table ON order_table.pack_id= package_table.package_id LEFT JOIN user_table ON user_table.user_id = order_table.user_id  WHERE order_id='$orderid' AND status=1";
+            $qry = "SELECT * FROM order_table LEFT JOIN package_table ON order_table.pack_id= package_table.package_id LEFT JOIN user_table ON user_table.mobile = order_table.mobile_no  WHERE order_id='$orderid' AND status=1";
             $result = $this->conn->query($qry);
             return mysqli_fetch_assoc($result);
              

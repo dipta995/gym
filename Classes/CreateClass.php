@@ -40,7 +40,7 @@ class CreateClass extends DB
     {
         $sql = "CREATE TABLE `order_table` (
             `order_id` int(11) NOT NULL AUTO_INCREMENT,
-            `user_id` int(11) NOT NULL,
+            `mobile_no` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
             `pack_id` int(11) NOT NULL,
             `pack_price` int(11) NOT NULL,
             `pack_month` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -48,7 +48,7 @@ class CreateClass extends DB
             `status` int(11) NOT NULL DEFAULT 0,
             `created_at` date NOT NULL DEFAULT current_timestamp(),
             PRIMARY KEY (`order_id`)
-           ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+           ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
            $r = $this->conn->query($sql);
            if($r){
                echo "Order table created";
@@ -75,7 +75,7 @@ class CreateClass extends DB
     }
     public function createuser()
     {
-        $sql = " 	CREATE TABLE `user_table` (
+        $sql = "CREATE TABLE `user_table` (
             `user_id` int(20) NOT NULL AUTO_INCREMENT,
             `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
             `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -89,7 +89,7 @@ class CreateClass extends DB
             `flag` tinyint(10) NOT NULL DEFAULT 0,
             `reg_at` timestamp NOT NULL DEFAULT current_timestamp(),
             PRIMARY KEY (`user_id`)
-           ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+           ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
            $r = $this->conn->query($sql);
            if($r){
                echo "User table created";

@@ -121,19 +121,19 @@ class PacageClass extends DB
                 }
         }
 
-        public function ApplyPack($data,$package_id,$user_id){
+        public function ApplyPack($data,$package_id,$mobile){
             $pack_price = mysqli_real_escape_string($this->conn, $data['pack_price']);
             $pack_month = mysqli_real_escape_string($this->conn, $data['pack_month']);
             $pack_discount = mysqli_real_escape_string($this->conn, $data['pack_discount']);
 
-            $que = $this->conn->query("SELECT * FROM order_table WHERE pack_id=$package_id AND status=0 AND user_id=$user_id");
+            $que = $this->conn->query("SELECT * FROM order_table WHERE pack_id=$package_id AND status=0 AND mobile_no=$mobile");
             $value = mysqli_fetch_array($que);
             if (mysqli_num_rows($que)>0) {
                 $txt = "<div class='alert alert-danger'>Already added</div>";
                 return $txt;
              }else{
 
-                 $qry = "INSERT INTO order_table(user_id,pack_id,pack_price,pack_month,pack_discount)VALUES('$user_id','$package_id','$pack_price','$pack_month','$pack_discount')";
+                 $qry = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount)VALUES('$mobile','$package_id','$pack_price','$pack_month','$pack_discount')";
                  $result = $this->conn->query($qry);
                      if($result){
                          $txt = "<div class='alert alert-success'>Order Successfully</div>";
@@ -162,16 +162,20 @@ class PacageClass extends DB
         }
 
         public function viewOrder(){
-            $id = $_SESSION['user_id'];
-            $qry = "SELECT * FROM order_table INNER JOIN user_table ON order_table.user_id=user_table.user_id INNER JOIN package_table ON order_table.pack_id=package_table.package_id where order_table.user_id=$id";
+            $mobile = $_SESSION['mobile'];
+            $qry = "SELECT * FROM order_table INNER JOIN user_table ON order_table.mobile_no=user_table.mobile INNER JOIN package_table ON order_table.pack_id=package_table.package_id where order_table.mobile_no='$mobile'";
             $result = $this->conn->query($qry);
+            // $row = mysqli_num_rows($result);
+            // if ($row>0) {
+               
+            // }
             return $result;
         }
 
         public function removeorder($order)
         {
-            $id = $_SESSION['user_id'];
-            $qry = "DELETE  FROM order_table WHERE user_id=$id AND order_id = $order";
+            $mobile = $_SESSION['mobile'];
+            $qry = "DELETE  FROM order_table WHERE mobile_no=$mobile AND order_id = $order";
             $result = $this->conn->query($qry);
             if ($result) {
                 return "<span style='color:green'>Order Cancelled </span>";

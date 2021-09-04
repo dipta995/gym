@@ -67,6 +67,7 @@ class LoginClass extends DB
             $_SESSION['loginauth'] = 'user';
             $_SESSION['user_id'] = $value['user_id'];
             $_SESSION['email'] = $value['email'];
+            $_SESSION['mobile'] = $value['mobile'];
                 if (empty($link)|| $link==NULL) {
                 header('Location: index.php');
                 }else{

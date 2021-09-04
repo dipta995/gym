@@ -67,15 +67,18 @@
                         <?php if ($value['status']==0) { ?>
                             <a href="?confirm=<?php echo $value['order_id']; ?>" class="btn btn-sm btn-info">Confirm</a>
                             
-                      <?php   }elseif($value['status']==1){ echo "Confirm &"; 
+                      <?php   }elseif($value['status']==1){  
                     
                     $date=date("Y-m-d");
                       if ($effectiveDate< $date) {
                          
-                         echo "<br>expaired</br>";
+                         echo "expaired</br>";
                      }else{ 
                          
-                         echo "<br>Running</br>"; }
+                         echo "Running</br>";
+                         echo "<a class='btn btn-danger' href=../idcart.php?orderid=".$value['order_id']." >Id Cart</a>";
+                        
+                        }
                     
                     
                     

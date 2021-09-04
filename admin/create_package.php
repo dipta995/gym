@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="form-group">
               <label>Details</label>
-              <textarea name="details" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Package Description"></textarea>
+              <textarea class="ckeditor form-control" id="myEditor" name="details" cols="" rows="3"></textarea>
+              <!-- <textarea name="details" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Package Description"></textarea> -->
             </div>
             <div class="form-group">
               <label>Month</label>
@@ -55,5 +56,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
   </div>
 </div>
+<!-- <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+ 
+
+ 
+<script type="text/javascript"> 
+//<![CDATA[
+
+	CKEDITOR.replace( 'myEditor',
+		{
+			fullPage : true,
+			uiColor : '#efe8ce'
+		});
+//]]>
+</script> -->
 <!---Container Fluid-->
 <?php include 'layouts/footer.php';?>
