@@ -42,6 +42,7 @@ class PacageClass extends DB
                         $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For First name</span>";
                         return $txt;
                     }elseif (mysqli_num_rows($ress)>0){
+
                         $txt = "<span style='color:red; font-size: 15px;'>This Email Already been Registered </span>";
                         return $txt;
                     }
@@ -74,16 +75,19 @@ class PacageClass extends DB
            }else{
                 move_uploaded_file($file_temp, $move_image);
 
-                    $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address) values('$first_name','$last_name','$email','$password','$dob','$gender','$$mobileno','$address')";
+                    $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address,image) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobileno','$address','$uploaded_image')";
                     $result = $this->conn->query($qry);
+                    if ($result) {  
+            
                    
-                    $qry1 = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,status)VALUES('$$mobileno','$package_id','$pack_price','$pack_month','$pack_discount','1')";
+                    $qry1 = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,status)VALUES('$mobileno','$package_id','$pack_price','$pack_month','$pack_discount','1')";
                     $result1 = $this->conn->query($qry1);
 
                     if($result1){
                         $txt = "<div class='alert alert-success'>Successfully New Member added</div>";
                         return $txt;
                     }
+                }
                 }
             }
         }
