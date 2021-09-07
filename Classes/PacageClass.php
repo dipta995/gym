@@ -21,6 +21,7 @@ class PacageClass extends DB
             
             $add = "+8801";
             $mobileno = $add.$mobile;
+
             $query = "SELECT * FROM user_table WHERE email='$email'";
         $ress = $this->conn->query($query);
         $querya = "SELECT * FROM user_table WHERE  mobile='$mobile'";
@@ -31,6 +32,19 @@ class PacageClass extends DB
                 $pack_price = $res['price'];
                 $pack_month = $res['month'];
                 $pack_discount = $res['discount'];
+
+//image uploader 
+                $permited  = array('jpg', 'jpeg', 'png', 'gif');
+                $file_name = $file['image']['name'];
+                $file_size = $file['image']['size'];
+                $file_temp = $file['image']['tmp_name'];
+    
+                $div            = explode('.', $file_name);
+                $file_ext       = strtolower(end($div));
+                $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
+                $uploaded_image = "img/".$unique_image;
+                $move_image = "img/".$unique_image;
+                    
     
             if (empty($first_name) || empty($last_name) || empty($email) || empty($dob) || empty($gender) || empty($mobile) || empty($address)) {
                     $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
@@ -43,8 +57,13 @@ class PacageClass extends DB
                         return $txt;
                     }elseif (mysqli_num_rows($ress)>0){
 
-                        $txt = "<span style='color:red; font-size: 15px;'>This Email Already been Registered </span>";
-                        return $txt;
+                        $qry1 = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,status)VALUES('$mobileno','$package_id','$pack_price','$pack_month','$pack_discount','1')";
+                        $result1 = $this->conn->query($qry1);
+    
+                        if($result1){
+                            $txt = "<div class='alert alert-success'>Successfully New Member added</div>";
+                            return $txt;
+                        }
                     }
                     elseif (mysqli_num_rows($resa)>0){
                         $txt = "<span style='color:red; font-size: 15px;'>This Mobile Number Already been Registered </span>";
@@ -53,32 +72,19 @@ class PacageClass extends DB
                         return "<span style = 'color:red';>Mobile must have 9 digits.</span>";  
                                  
                     }
+                    elseif(empty($file_ext)){
+                         $txt = "<span style='color:red; font-size: 15px;'>Image is required</span>";
+                         return $txt;
+                    }
                     
                     
                     else{
-                $permited  = array('jpg', 'jpeg', 'png', 'gif');
-            $file_name = $file['image']['name'];
-            $file_size = $file['image']['size'];
-            $file_temp = $file['image']['tmp_name'];
-
-            $div            = explode('.', $file_name);
-            $file_ext       = strtolower(end($div));
-            $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
-            $uploaded_image = "img/".$unique_image;
-            $move_image = "img/".$unique_image;
            
-
-           
-           if(empty($file_ext)){
-                $txt = "<span style='color:red; font-size: 15px;'>Image is required</span>";
-                return $txt;
-           }else{
-                move_uploaded_file($file_temp, $move_image);
 
                     $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address,image) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobileno','$address','$uploaded_image')";
                     $result = $this->conn->query($qry);
                     if ($result) {  
-            
+                        move_uploaded_file($file_temp, $move_image);
                    
                     $qry1 = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,status)VALUES('$mobileno','$package_id','$pack_price','$pack_month','$pack_discount','1')";
                     $result1 = $this->conn->query($qry1);
@@ -88,7 +94,7 @@ class PacageClass extends DB
                         return $txt;
                     }
                 }
-                }
+               
             }
         }
         public function insertPackage($data){
