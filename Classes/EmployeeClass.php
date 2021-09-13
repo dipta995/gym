@@ -139,7 +139,12 @@ class EmployeeClass extends DB
 				}
             }
 		}
-
+        public function trainer()
+        {
+            $qry = "SELECT * from employee_table where emp_job_status = 'Instructtor'";
+			$result = $this->conn->query($qry);
+            return $result;
+        }
 
         public function deleteSalary($id){
 			$qry = "DELETE FROM salary_table WHERE salary_id='$id'";

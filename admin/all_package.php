@@ -40,6 +40,7 @@ if(isset($_GET['delPackage'])){
                         <th>Package Name</th>
                         <th>Details</th>
                         <th>Month</th>
+                        <th>Instructor</th>
                         <th>Price</th>
                         <th>Discount <br></th>
                         <th>Action</th>
@@ -58,6 +59,7 @@ if(isset($_GET['delPackage'])){
                         <td><?php echo $value['pack_name']; ?></td>
                         <td><?php echo $value['details']; ?></td>
                         <td><?php echo $value['month']; ?></td>
+                        <td><?php echo $value['emp_name']; ?></td>
                         <td><?php echo $value['price']; ?> Taka</td>
                         <td><?php echo $value['discount']; ?> % <br> <?php echo $value['price']-(($value['price']*$value['discount'])/100) ?>  Taka</td>
                         <td>

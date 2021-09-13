@@ -108,12 +108,13 @@ class PacageClass extends DB
           $month = mysqli_real_escape_string($this->conn, $data['month']);
           $price = mysqli_real_escape_string($this->conn, $data['price']);
           $discount = mysqli_real_escape_string($this->conn, $data['discount']);
+          $trainer = mysqli_real_escape_string($this->conn, $data['trainer']);
 
           if (empty($pack_name) || empty($details) || empty($month) || empty($price) || empty($discount)) {
                 $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
                 return $txt;
           }else{
-                $qry = "INSERT into package_table(pack_name,details,month,price,discount) values('$pack_name','$details','$month','$price','$discount')";
+                $qry = "INSERT into package_table(pack_name,details,month,price,discount,trainer) values('$pack_name','$details','$month','$price','$discount','$trainer')";
                 $result = $this->conn->query($qry);
                 if($result){
                     $txt = "<div class='alert alert-success'>Successfully inserted</div>";
@@ -123,7 +124,7 @@ class PacageClass extends DB
         }
 
         public function viewPackage(){
-            $qry = "SELECT * FROM package_table where del_pack=0";
+            $qry = "SELECT * FROM package_table left join employee_table on package_table.trainer = employee_table.emp_id where del_pack=0";
             $result = $this->conn->query($qry);
             return $result;
         }
@@ -159,7 +160,8 @@ class PacageClass extends DB
             $month = mysqli_real_escape_string($this->conn, $data['month']);
             $price = mysqli_real_escape_string($this->conn, $data['price']);
             $discount = mysqli_real_escape_string($this->conn, $data['discount']);
-
+            $trainer = mysqli_real_escape_string($this->conn, $data['trainer']);
+            
             if (empty($pack_name) || empty($details) || empty($month) || empty($price) || empty($discount)) {
                 $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
                 return $txt;
@@ -170,6 +172,7 @@ class PacageClass extends DB
                     details          		= '$details',
                     month          	        = '$month',
                     price             	    = '$price',
+                    trainer             	    = '$trainer',
                     discount                = '$discount'
 
                     WHERE package_id        = '$packageid'";
