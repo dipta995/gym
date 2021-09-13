@@ -66,8 +66,13 @@ class PacageClass extends DB
                         }
                     }
                     elseif (mysqli_num_rows($resa)>0){
-                        $txt = "<span style='color:red; font-size: 15px;'>This Mobile Number Already been Registered </span>";
-                        return $txt;
+                        $qry1 = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,status)VALUES('$mobileno','$package_id','$pack_price','$pack_month','$pack_discount','1')";
+                        $result1 = $this->conn->query($qry1);
+    
+                        if($result1){
+                            $txt = "<div class='alert alert-success'>Successfully New Member added</div>";
+                            return $txt;
+                        }
                     }elseif ( strlen ($mobile) != 9) {  
                         return "<span style = 'color:red';>Mobile must have 9 digits.</span>";  
                                  

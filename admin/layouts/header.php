@@ -13,6 +13,8 @@ session_start();
   $pack = new PacageClass();
   include '../Classes/FoodClass.php';
 $food = new FoodClass();
+include '../Classes/EmployeeClass.php';
+$emp = new EmployeeClass();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +78,21 @@ $food = new FoodClass();
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Food Menu</span>
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+          aria-controls="collapseTable">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Employee</span>
+        </a>
+        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Employee </h6>
+            <a class="collapse-item" href="create_employee.php">Employee Create</a>
+            <a class="collapse-item" href="employee_list.php">Employee list</a>
+            <a class="collapse-item" href="salary_list.php">Salary list</a>
+          </div>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
