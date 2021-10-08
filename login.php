@@ -1,6 +1,7 @@
 <?php include 'layouts/header.php';
 
-include "Classes/LoginClass.php";
+// include "Classes/LoginClass.php";
+ 
 if(isset($_GET['link'])){
   $link = $_GET['link'];
 }else{

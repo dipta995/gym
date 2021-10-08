@@ -38,6 +38,7 @@
                     <tr>
                         <th>#</th>
                         <th>Employee Name</th>
+                        <th>Ratting</th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Position</th>
@@ -57,12 +58,32 @@
                     <tr>
                         <td><?php echo $i+=1; ?></td>
                         <td><?php echo $value['emp_name']; ?></td>
+                        <td><?php 
+               
+                
+               if ($value['total_rat'] ==NULL || $value['hit'] ==NULL) {
+                  for ($i=0; $i < 5; $i++) { 
+                      echo '<span style="color:#444;" class="fa fa-star"></span>';
+                      }
+              }else{ $count = round($value['total_rat']/$value['hit']);
+                  for ($i=0; $i < $count; $i++) { 
+                      echo '<span style="color: orange;" class="fa fa-star checked"></span>';
+                      }
+                      for ($i=0; $i < 5- $count; $i++) { 
+                       echo '<span style="color:#444;" class="fa fa-star"></span>';
+                      }
+              }?>
+              <style>
+              .checked {
+                color: orange;
+              }
+              </style></td>
                         <td><?php echo $value['emp_email']; ?></td>
                         <td><?php echo $value['emp_phone']; ?></td>
                         <td><?php echo $value['emp_job_status']; ?> </td>
                         <td><?php echo $value['emp_salary']; ?> Taka</td>
                         <td><?php echo $value['emp_address']; ?> </td>
-                        <td><img src="<?php echo $value['emp_image']; ?>" alt=""> </td>
+                        <td><img style="height: 60px; width: 60px;" src="<?php echo $value['emp_image']; ?>" alt=""> </td>
                          
                         <td>
                             <a href="edit_employee.php?empid=<?php echo $value['emp_id'] ;?>" class="btn btn-sm btn-info">Edit</a>

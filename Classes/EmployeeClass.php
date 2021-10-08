@@ -75,7 +75,19 @@ class EmployeeClass extends DB
 
         public function viewEmployee()
         {
-            $qry = "SELECT * FROM employee_table ";
+            $qry = "SELECT * FROM employee_table";
+            $result = $this->conn->query($qry);
+            return $result;
+        }
+        public function viewEmployeebyid($id)
+        {
+            $qry = "SELECT * FROM employee_table where emp_id=$id ";
+            $result = $this->conn->query($qry);
+            return $result;
+        }
+        public function alluser()
+        {
+            $qry = "SELECT * FROM user_table ";
             $result = $this->conn->query($qry);
             return $result;
         }
@@ -153,5 +165,42 @@ class EmployeeClass extends DB
                 $txt = "<span style='color:green; font-size: 15px;'>Successfully Deleted</span>";
                 return $txt;
             }
-		}
+           
+		} 
+        public function addratting($data,$userid,$empid){
+                $star = mysqli_real_escape_string($this->conn, $data['star']);
+                $qry = "SELECT * from check_table where emp_id = $empid and customer_id=$userid";
+                $result = $this->conn->query($qry);
+                $row = mysqli_num_rows($result);
+                if (empty($star)) {
+                    $txt = "<span style='color:green; font-size: 15px;'>Choose Ratting</span>";
+                    return $txt;
+                }elseif($row>0){
+                    $txt = "<span style='color:green; font-size: 15px;'>Already Ratted</span>";
+                    return $txt;
+                }else{
+                    $que = "SELECT * from employee_table where emp_id = $empid";
+                    $res = $this->conn->query($que);
+                    $val = mysqli_fetch_array($res);
+                    $past_hit = $val['hit'];
+                    $past_rat = $val['total_rat'];
+                    $qry = "UPDATE employee_table 
+                    SET
+                    total_rat                = $past_rat+$star,
+                    hit                = '$past_hit+1'
+                    WHERE emp_id        = $empid";
+            $result = $this->conn->query($qry);
+
+            $ins = "INSERT into check_table(emp_id,customer_id)
+                	values('$empid','$userid')";
+                	$this->conn->query($ins);
+
+
+
+            if($result === TRUE){
+                $txt = "<div class='alert alert-success'>Successfully Deleted</div>";
+                return $txt;
+            }
+                }
+            }
 }

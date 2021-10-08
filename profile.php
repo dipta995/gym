@@ -23,7 +23,7 @@ include 'layouts/nav.php';
                 <span><b>Gender:</b> <?php echo $value['gender']; ?></span>
                 <span><b>Mobile:</b> <?php echo $value['mobile']; ?></span>
                 <span><b>Present Address:</b> <?php echo $value['address']; ?></span>
-                <img style="height: 60px; width: 60px;" src="" alt="">
+                <img style="height: 60px; width: 60px;" src=" <?php echo $value['image']; ?>" alt="">
 <?php } ?>
             </div>
              
@@ -60,7 +60,9 @@ include 'layouts/nav.php';
                     }
                 $i = 0;
                 $view = $pack->viewOrder();
-                foreach($view as $value){
+                $count = mysqli_num_rows($view);
+                if ($count>0) {
+                foreach($view as $value){ 
                     $i++;
             ?>
                         <tr>
@@ -95,7 +97,7 @@ include 'layouts/nav.php';
                             
                            <?php  } ?>  
                         </tr>
-                        <?php } ?>
+                        <?php }}else{ echo "<th></th><th></th><th></th><th> No result foud</th>"; } ?>
                     </tbody>
                 </table>
             </div>
@@ -109,11 +111,13 @@ include 'layouts/nav.php';
           // $interval->y;
             
                  $dataget = $food->myfoodmenu($interval->y);
+                 $counts = mysqli_num_rows($dataget);
+                if ($counts>0) {
                  foreach($dataget as $values){ 
             ?>
                  <span><b>Ages:</b> <?php echo $values['age_limit']; ?></span>
                  <?php echo $values['menu']; ?>
-<?php } ?>
+<?php }}else{ echo "<th></th><th></th><th></th><th> No result foud</th>"; } ?>
             </div>
             </div>
             </div>

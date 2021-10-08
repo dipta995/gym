@@ -83,15 +83,8 @@ class FoodClass extends DB
             $qry = "SELECT * FROM food_table WHERE age_limit LIKE  '%$age%' ";
             $result = $this->conn->query($qry);
 
-           // return $result;     
-
-            if (mysqli_num_rows($result)>0) {
-            return $result; 
-        }
-            else {
-                echo "NO result Found";
-            
-        }
+           return $result;     
+ 
     }
  
  

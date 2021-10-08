@@ -43,6 +43,26 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
                     <label>Discount</label>
                     <input name="pack_discount" type="text" readonly value="<?php echo $value['discount'];?>" class="form-control" />
                 </div>
+                <div class="form-group">
+              <label>Instructor</label>
+             <select name="trainer" id="" class="form-control">
+             <option value="" disabled >Choose</option>
+               <?php
+               $data = $emp->trainer();
+               foreach ($data as $key => $value) {
+             
+               ?> 
+               
+               <option value="<?php echo $value['emp_id'];?>"><?php
+                echo $value['emp_name']; 
+               ?>
+            
+            
+            
+            </option>
+               <?php } ?>
+             </select>
+            </div>
                 <button type="submit" class="btn btn-primary btn-block mb-4">Buy</button>
                 <?php } ?>
             </form>

@@ -15,6 +15,8 @@ session_start();
 $food = new FoodClass();
 include '../Classes/EmployeeClass.php';
 $emp = new EmployeeClass();
+include '../Classes/LoginClass.php';
+$create = new LoginClass();
 ?>
 <!DOCTYPE html>
 <html lang="en">

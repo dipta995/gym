@@ -410,40 +410,51 @@
         <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+                    <h2 class="section-heading text-uppercase">Our Instructor</h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
                 <div class="row">
+                    <?php
+                     $data = $emp->trainer();
+                     foreach ($data as $key => $value) {
+                   
+                     
+                    
+                    ?>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                            <h4>Parveen Anand</h4>
-                            <p class="text-muted">Lead Designer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a href="viewemployee.php?empid=<?php echo $value['emp_id'];?>">
+                            <img class="mx-auto rounded-circle" src="admin/<?php echo $value['emp_image'];?>" alt="..." />
+                            <h4><?php echo $value['emp_name'];?></h4>
+                            <p class="text-muted">
+               
+                
+              <?php  if ($value['total_rat'] ==NULL || $value['hit'] ==NULL) {
+                  for ($i=0; $i < 5; $i++) { 
+                      echo '<span style="color:#444;" class="fa fa-star"></span>';
+                      }
+              }else{ $count = round($value['total_rat']/$value['hit']);
+                  for ($i=0; $i < $count; $i++) { 
+                      echo '<span style="color: orange;" class="fa fa-star checked"></span>';
+                      }
+                      for ($i=0; $i < 5- $count; $i++) { 
+                       echo '<span style="color:#444;" class="fa fa-star"></span>';
+                      }
+              } ?>
+              <style>
+              .checked {
+                color: orange;
+              }
+              </style></p>
+
+                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a> -->
+                        </a>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
-                            <h4>Diana Petersen</h4>
-                            <p class="text-muted">Lead Marketer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
-                            <h4>Larry Parker</h4>
-                            <p class="text-muted">Lead Developer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
+                  <?php } ?>
+                   
                 </div>
                 <div class="row">
                     <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>

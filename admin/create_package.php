@@ -49,19 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <label>Discount (%)</label>
               <input name="discount" type="text" class="form-control" placeholder="Enter discount">
             </div>
-            <div class="form-group">
-              <label>Instructor</label>
-             <select name="trainer" id="" class="form-control">
-             <option value="" disabled >Choose</option>
-               <?php
-               $data = $emp->trainer();
-               foreach ($data as $key => $value) {
-             
-               ?>
-               <option value="<?php echo $value['emp_id'];?>"><?php echo $value['emp_name'];?></option>
-               <?php } ?>
-             </select>
-            </div>
+          
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>

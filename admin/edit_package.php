@@ -75,22 +75,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
               <label>Discount (%)</label>
               <input name="discount" type="text" class="form-control" value="<?php echo $value['discount'];?>">
             </div>
-
-            <div class="form-group">
-              <label>Instructor</label>
-             <select name="trainer" id="" class="form-control">
-               <option value="" disabled >Choose</option>
-               <?php
-               $data = $emp->trainer();
-               foreach ($data as $key => $val) {
-             
-               ?>
-               <option value="<?php echo $val['emp_id'];?>" <?php if ($val['emp_id']==$value['trainer']) {
-                 echo "selected";
-               } ?>  ><?php echo $val['emp_name'];?></option>
-               <?php } ?>
-             </select>
-            </div>
+ 
             <?php }} ?>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

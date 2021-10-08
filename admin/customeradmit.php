@@ -5,7 +5,7 @@
      echo "<script> window.location='all_package.php'</script>";
  }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $createPackage = $pack->createnewcustomer($_POST,$_FILES,$packid);
+    $createPackage = $pack->confirmbuypackbyadmin($_POST,$packid);
 }
 ?>
 <!-- Container Fluid-->
@@ -20,7 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </div>
 
   <div class="row">
-      <div class="col-lg-2"></div>
+      <div class="col-lg-2">
+        <a class="btn btn-success" href="createnew.php">Create new Customer</a>
+      </div>
     <div class="col-lg-8">
       <!-- Form Basic -->
       <div class="card mb-4">
@@ -31,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo $createPackage;
         }  ?>
         <div class="card-body">
-          <form method="POST" action="" enctype="multipart/form-data">
+          <form method="POST" action="">
         <p>Total price:
           <?php
             $pack = $pack->viewSinglePackage($packid);
@@ -40,41 +42,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $discount= $data['discount'];
            echo $total = $price-(($price*$discount)/100);
           ?>  Taka</p>
-            <div class="form-group">
-              <label>First Name</label>
-              <input name="first_name" type="text" class="form-control" placeholder="Enter package">
+          <div class="form-group">
+              <label>User</label>
+             <select name="mobile_no" id="" class="form-control">
+             <option value="" disabled >Choose</option>
+               <?php
+               $data = $emp->alluser();
+               foreach ($data as $key => $values) {
+             
+               ?>
+               <option value="<?php echo $values['mobile'];?>"><?php echo $values['first_name'].' '.$values['last_name'].'('.$values['mobile'].')';?></option>
+               <?php } ?>
+             </select>
             </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input name="last_name" type="text" class="form-control" placeholder="Enter package">
+             <div class="form-group">
+              <label>Instructor</label>
+             <select name="trainer" id="" class="form-control">
+             <option value="" disabled >Choose</option>
+               <?php
+               $data = $emp->trainer();
+               foreach ($data as $key => $value) {
+             
+               ?>
+               <option value="<?php echo $value['emp_id'];?>"><?php echo $value['emp_name'];?></option>
+               <?php } ?>
+             </select>
             </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input name="email" type="text" class="form-control" placeholder="Enter package">
-            </div>
-            <div class="form-group">
-              <label>DOB</label>
-              <input name="dob" type="date" class="form-control" placeholder="Enter package">
-            </div>
-            <div class="form-group">
-              <label>Gender</label><br>
-              <input checked name="gender" type="radio" value="male" >Male
-              <input name="gender" type="radio" value="female" >Female
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">+8801</span>
-              </div>
-              <input type="number" min=0 class="form-control" placeholder="" name="mobile" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="form-group">
-              <label>Address</label>
-              <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Package Description"></textarea>
-            </div>
-            <div class="form-group">
-              <label>Image</label>
-              <input name="image" type="file" class="form-control" placeholder="Enter month" min="3">
-            </div>
+
+
+             
+            
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>

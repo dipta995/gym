@@ -54,8 +54,8 @@
                     ?>
                     <tr>
                         <td><?php echo $i+1; ?></td>
-                        <td><?php echo $value['first_name']; ?></td>
-                        <td><?php echo $value['mobile']; ?></td>
+                        <td><?php echo $value['last_name']; ?></td>
+                        <td><?php echo $value['mobile_no']; ?></td>
                         <td><?php echo $value['pack_name']; ?></td>
                         <td><?php echo $value['created_at']."<br>".$effectiveDate = date('Y-m-d', strtotime("+".$value['month']." months", strtotime($value['created_at']))); ?></td>
                 

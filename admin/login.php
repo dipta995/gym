@@ -1,7 +1,8 @@
 <?php 
     include "../Classes/LoginClass.php";
-  
+ 
     $login = new LoginClass();
+  
     if ($_SERVER['REQUEST_METHOD']=='POST') {
         $email = $_POST['email'];
         $pass = $_POST['pass'];
