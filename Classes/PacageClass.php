@@ -55,6 +55,7 @@ class PacageClass extends DB
             }
         }
 
+
         public function viewSinglePackage($packageid){
             $qry = "SELECT * FROM package_table WHERE package_id='$packageid'";
             $result = $this->conn->query($qry);
@@ -142,6 +143,17 @@ class PacageClass extends DB
             // }
             return $result;
         }
+        public function removeEmp($id)
+        {
+            
+            $qry = "DELETE  FROM employee_table WHERE emp_id=$id";
+            $result = $this->conn->query($qry);
+            if ($result) {
+                return "<span style='color:green'>Order Cancelled </span>";
+            }else{
+                return "<span style='color:green'>Something Wrong</span>";
+            }
+        }
 
         public function removeorder($order)
         {
@@ -157,8 +169,6 @@ class PacageClass extends DB
         public function confirmbuypackbyadmin($data,$packid){
             $mobile_no = mysqli_real_escape_string($this->conn, $data['mobile_no']);
             $trainer = mysqli_real_escape_string($this->conn, $data['trainer']);
-           
-
             $que = $this->conn->query("SELECT * FROM order_table WHERE pack_id=$packid AND status=0 AND mobile_no=$mobile_no");
             $value = mysqli_fetch_array($que);
             if (mysqli_num_rows($que)>0) {

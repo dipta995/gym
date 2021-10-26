@@ -1,11 +1,11 @@
 <?php include 'layouts/header.php';
  
-// if(isset($_GET['delPackage'])){
-//     $delPackage = $_GET['delPackage'];
-//     $delete = $pack->deletePackage($delPackage);
-// 	echo $delete;
+if(isset($_GET['delemp'])){
+    $delemp = $_GET['delemp'];
+    $delete = $pack->removeEmp($delemp);
+	echo $delete;
 	
-// }
+}
 ?>
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
