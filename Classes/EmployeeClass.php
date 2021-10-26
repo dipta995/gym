@@ -65,6 +65,11 @@ class EmployeeClass extends DB
                
                     $qry = "INSERT into employee_table(emp_name,emp_job_status,emp_email,emp_phone,emp_image,emp_salary,emp_address) values('$emp_name','$emp_job_status','$emp_email','$mobileno','$uploaded_image','$emp_salary','$emp_address')";
                     $result = $this->conn->query($qry);
+                    if ($emp_job_status=='Manager') {
+                        $qry = "INSERT into admin_table(admin_email,admin_password,admin_status) values('$emp_email','12','1')";
+                                        $result = $this->conn->query($qry);
+                    }
+                    
                     if($result){
                         $txt = "<div class='alert alert-success'>Successfully Employee Created</div>";
                         return $txt;
@@ -183,11 +188,12 @@ class EmployeeClass extends DB
                     $res = $this->conn->query($que);
                     $val = mysqli_fetch_array($res);
                     $past_hit = $val['hit'];
+                   $past_hit = $past_hit+1;
                     $past_rat = $val['total_rat'];
                     $qry = "UPDATE employee_table 
                     SET
                     total_rat                = $past_rat+$star,
-                    hit                = '$past_hit+1'
+                    hit                = '$past_hit'
                     WHERE emp_id        = $empid";
             $result = $this->conn->query($qry);
 

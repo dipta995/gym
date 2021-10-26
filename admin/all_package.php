@@ -62,10 +62,13 @@ if(isset($_GET['delPackage'])){
                         <td><?php echo $value['emp_name']; ?></td>
                         <td><?php echo $value['price']; ?> Taka</td>
                         <td><?php echo $value['discount']; ?> % <br> <?php echo $value['price']-(($value['price']*$value['discount'])/100) ?>  Taka</td>
+                        <?php  if ($status==0) { ?>
                         <td>
+
                             <a href="edit_package.php?packageid=<?php echo $value['package_id'] ;?>" class="btn btn-sm btn-info">Edit</a>
                             <a href="?delPackage=<?php echo $value['package_id'] ;?>" class="btn btn-sm btn-danger">Delete</a>
                         </td>
+                        <?php } ?>
                         <td><a href="customeradmit.php?packid=<?php echo $value['package_id'] ;?>" class="btn btn-sm btn-danger">Sell</a></td>
                     </tr>
                     <?php } ?>

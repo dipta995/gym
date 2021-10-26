@@ -25,6 +25,7 @@ class LoginClass extends DB
                  $_SESSION['loginauth'] = 'admin';
                 $_SESSION['admin_id'] = $value['admin_id'];
                 $_SESSION['admin_email'] = $value['admin_email'];
+                $_SESSION['admin_status'] = $value['admin_status'];
                 echo "<script> window.location = 'index.php';</script>";
              }
              else{

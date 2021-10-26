@@ -9,6 +9,7 @@ session_start();
     session_destroy();
     header("Location:login.php");
   }
+
   include '../Classes/PacageClass.php';
   $pack = new PacageClass();
   include '../Classes/FoodClass.php';
@@ -17,6 +18,7 @@ include '../Classes/EmployeeClass.php';
 $emp = new EmployeeClass();
 include '../Classes/LoginClass.php';
 $create = new LoginClass();
+$status = $_SESSION['admin_status'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +65,8 @@ $create = new LoginClass();
         <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Package</h6>
-            <a class="collapse-item" href="create_package.php">Create Package</a>
+            <?php  if ($status==0) { ?>
+            <a class="collapse-item" href="create_package.php">Create Package</a> <?php } ?>
             <a class="collapse-item" href="all_package.php">All Package</a>
           </div>
         </div>
@@ -90,7 +93,8 @@ $create = new LoginClass();
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Employee </h6>
-            <a class="collapse-item" href="create_employee.php">Employee Create</a>
+            <?php  if ($status==0) { ?>
+            <a class="collapse-item" href="create_employee.php">Employee Create</a> <?php } ?>
             <a class="collapse-item" href="employee_list.php">Employee list</a>
             <a class="collapse-item" href="salary_list.php">Salary list</a>
           </div>
@@ -226,18 +230,15 @@ $create = new LoginClass();
                 <span class="ml-2 d-none d-lg-inline text-white small"><?php echo  $_SESSION['admin_email']; ?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <!-- <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
-                </a>
+                </a> -->
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
+                  Change Password
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
+               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="?logout=logout" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

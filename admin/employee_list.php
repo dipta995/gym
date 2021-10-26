@@ -84,11 +84,12 @@
                         <td><?php echo $value['emp_salary']; ?> Taka</td>
                         <td><?php echo $value['emp_address']; ?> </td>
                         <td><img style="height: 60px; width: 60px;" src="<?php echo $value['emp_image']; ?>" alt=""> </td>
-                         
+                        <?php  if ($status==0) { ?>
                         <td>
                             <a href="edit_employee.php?empid=<?php echo $value['emp_id'] ;?>" class="btn btn-sm btn-info">Edit</a>
                             <a href="?delemp=<?php echo $value['emp_id'] ;?>" class="btn btn-sm btn-danger">Delete</a>
                         </td>
+                        <?php } ?>
                         <?php
                         $s = $emp->salaraycheck( $value['emp_id']);
                         if ($s>0) { }else{

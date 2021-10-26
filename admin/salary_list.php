@@ -64,11 +64,11 @@
                         <td><?php echo $value['month']."/".$value['year']; ?></td>
               
                         <td><img style="height: 60px; width:60px;" src="<?php echo $value['emp_image']; ?>" alt=""> </td>
-                         
+                        <?php  if ($status==0) { ?>
                         <td>
                            <a href="?delSalary=<?php echo $value['salary_id'] ;?>" class="btn btn-sm btn-danger">Delete</a>
                         </td>
-                 
+                 <?php } ?>
                     </tr>
                     <?php } ?>
                 </tbody>
