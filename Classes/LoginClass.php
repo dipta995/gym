@@ -129,5 +129,31 @@ class LoginClass extends DB
             return $txt = "<div style='color:red; font-size: 15px;'>Incorrect email and password...!</div>";;
         }
     }
+
+    public function updatepass($data,$id)
+    {
+        $password = mysqli_real_escape_string($this->conn, $data['password']);
+        $password1 = mysqli_real_escape_string($this->conn, $data['password1']);
+        if ( strlen ($password) < 6) {  
+            return "<span style = 'color:red';>Password must have 6 digits.</span>";  
+                     
+        }elseif (empty($password) || empty($password1)) {
+            return "<span style = 'color:red';>Field Must not be empty</span>";  
+        }elseif ($password==$password1) {
+           
+            $qry = "UPDATE admin_table 
+            SET
+            admin_password                = $password
+            WHERE admin_id        = $id";
+    $result = $this->conn->query($qry);
+    if ($result) {
+        return "<span style = 'color:green';>Password Updated.</span>";  
+    }
+        }else{
+            return "<span style = 'color:red';>Password Does not match.</span>";  
+        }
+        
+
+    }
 }
 ?>

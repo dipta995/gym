@@ -21,6 +21,7 @@ $cont = new ContactClass();
 include '../Classes/LoginClass.php';
 $create = new LoginClass();
 $status = $_SESSION['admin_status'];
+$adminid = $_SESSION['admin_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -242,7 +243,7 @@ $status = $_SESSION['admin_status'];
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a> -->
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="up_password.php">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Change Password
                 </a>
