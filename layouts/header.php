@@ -4,7 +4,8 @@ include 'Classes/PacageClass.php';
 include 'Classes/LoginClass.php';
 include 'Classes/FoodClass.php';
 include 'Classes/EmployeeClass.php';
-
+include 'Classes/ContactClass.php';
+$cont = new ContactClass();
 $pack = new PacageClass();
 $login = new LoginClass();
 $food = new FoodClass();
