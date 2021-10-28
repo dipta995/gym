@@ -77,6 +77,86 @@ class EmployeeClass extends DB
                 }
                 }
         }
+        public function updateEmployee($data,$file)
+        {
+            $emp_name = mysqli_real_escape_string($this->conn, $data['emp_name']);
+            $emp_job_status = mysqli_real_escape_string($this->conn, $data['emp_job_status']);
+            $emp_email = mysqli_real_escape_string($this->conn, $data['emp_email']);
+            $emp_phone = mysqli_real_escape_string($this->conn, $data['emp_phone']);
+            $emp_salary = mysqli_real_escape_string($this->conn, $data['emp_salary']);
+            $emp_address = mysqli_real_escape_string($this->conn, $data['emp_address']);
+            $empid = mysqli_real_escape_string($this->conn, $data['emp_id']);
+            $def="+8801";
+            $mobileno = $def.$emp_phone;
+           
+         
+            $permited  = array('jpg', 'jpeg', 'png', 'gif');
+            $file_name = $file['image']['name'];
+            $file_size = $file['image']['size'];
+            $file_temp = $file['image']['tmp_name'];
+
+            $div            = explode('.', $file_name);
+            $file_ext       = strtolower(end($div));
+            $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
+            $uploaded_image = "img/".$unique_image;
+            $move_image = "img/".$unique_image;
+           
+    
+            if (empty($emp_name) || empty($emp_job_status) || empty($emp_email) || empty($emp_phone) || empty($emp_salary) || empty($emp_address)) {
+                    $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
+                    return $txt;
+            }elseif (!preg_match ("/^[a-zA-z ]*$/", $emp_name) ){
+                $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For First name</span>";
+                return $txt;
+            }
+             elseif ( strlen ($emp_phone) != 9) {  
+                return "<span style = 'color:red';>Mobile must have 9 digits.</span>";  
+                         
+            } elseif ( strlen ($emp_address) > 200) {  
+                return "<span style = 'color:red';>200 Degit limitation</span>";  
+                         
+            } 
+            
+            elseif(empty($file_ext)){
+                   
+                $qry = "UPDATE employee_table 
+                SET
+                emp_name               = '$emp_name',
+                emp_job_status         = '$emp_job_status', 
+                emp_email              = '$emp_email',
+                emp_phone          	   = '$mobileno', 
+                emp_salary             = '$emp_salary',
+                emp_address            = '$emp_address'
+                WHERE emp_id        = '$empid'";
+                $result = $this->conn->query($qry);
+                if($result){
+                    
+                    return "<script>window.location='employee_list.php';</script>";
+                }
+               }else{
+                  
+               
+                    $qry = "UPDATE employee_table 
+                    SET
+                    emp_name               = '$emp_name',
+                    emp_job_status         = '$emp_job_status', 
+                    emp_email              = '$emp_email',
+                    emp_phone          	   = '$mobileno', 
+                    emp_salary             = '$emp_salary',
+                    emp_image             = '$uploaded_image',
+                    emp_address            = '$emp_address'
+                    WHERE emp_id        = '$empid'";
+                    $result = $this->conn->query($qry);
+                    
+                    
+                    if($result){
+                        move_uploaded_file($file_temp, $move_image);
+                        return "<script>window.location='employee_list.php';</script>";
+                    }
+                }
+                
+        }
+        
 
         public function viewEmployee()
         {
@@ -209,4 +289,7 @@ class EmployeeClass extends DB
             }
                 }
             }
+
+           
+
 }

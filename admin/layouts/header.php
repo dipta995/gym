@@ -16,6 +16,8 @@ session_start();
 $food = new FoodClass();
 include '../Classes/EmployeeClass.php';
 $emp = new EmployeeClass();
+include '../Classes/ContactClass.php';
+$cont = new ContactClass();
 include '../Classes/LoginClass.php';
 $create = new LoginClass();
 $status = $_SESSION['admin_status'];
@@ -99,6 +101,12 @@ $status = $_SESSION['admin_status'];
             <a class="collapse-item" href="salary_list.php">Salary list</a>
           </div>
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Contact</span>
+        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"

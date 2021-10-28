@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2021 at 11:52 AM
+-- Generation Time: Oct 28, 2021 at 05:01 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -65,6 +65,20 @@ INSERT INTO `check_table` (`id`, `customer_id`, `emp_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contact_table`
+--
+
+CREATE TABLE `contact_table` (
+  `id` int(11) NOT NULL,
+  `name` varchar(151) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `phone` varchar(150) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employee_table`
 --
 
@@ -87,9 +101,8 @@ CREATE TABLE `employee_table` (
 --
 
 INSERT INTO `employee_table` (`emp_id`, `emp_name`, `emp_job_status`, `emp_email`, `emp_phone`, `emp_image`, `emp_salary`, `create_emp`, `emp_address`, `total_rat`, `hit`) VALUES
-(3, 'Hamid', 'Instructtor', 'hamid@gmail.com', '+8801111111111', 'img/9b38471e00.png', '10000', '2021-10-08 02:43:58', 'sdf', 4, 1),
-(4, 'DDD', 'Instructtor', 'dd@gmail.com', '+8801123456789', 'img/1bc5ff9f0b.png', '100000', '2021-10-08 09:15:36', 'df', 8, 3),
-(5, 'test d', 'Manager', 't@g.c', '+8801111111111', 'img/f57354c5d4.png', '10000', '2021-10-26 09:41:12', 'fsf', NULL, NULL);
+(3, 'Hamids', 'Instructtor', 'hamid@gmail.com', '+8801111111111', 'img/b3baddc405.png', '10000', '2021-10-08 02:43:58', 'sdf', 4, 1),
+(4, 'DDD', 'Instructtor', 'dd@gmail.com', '+8801123456789', 'img/7551243ea9.png', '100000', '2021-10-08 09:15:36', 'df', 8, 3);
 
 -- --------------------------------------------------------
 
@@ -175,8 +188,7 @@ CREATE TABLE `salary_table` (
 --
 
 INSERT INTO `salary_table` (`salary_id`, `emp_id`, `month`, `salary`, `year`, `pay_at`) VALUES
-(3, 3, 'October', '10000', 2021, '2021-10-26 09:47:07'),
-(4, 5, 'October', '10000', 2021, '2021-10-26 09:49:34');
+(3, 3, 'October', '10000', 2021, '2021-10-26 09:47:07');
 
 -- --------------------------------------------------------
 
@@ -223,6 +235,12 @@ ALTER TABLE `admin_table`
 -- Indexes for table `check_table`
 --
 ALTER TABLE `check_table`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contact_table`
+--
+ALTER TABLE `contact_table`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -276,6 +294,12 @@ ALTER TABLE `admin_table`
 --
 ALTER TABLE `check_table`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `contact_table`
+--
+ALTER TABLE `contact_table`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee_table`
