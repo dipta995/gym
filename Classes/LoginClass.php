@@ -1,5 +1,12 @@
 <?php 
 include_once 'db.php';
+require("mail/src/PHPMailer.php");
+ require("mail/src/SMTP.php");
+ require("mail/src/Exception.php");
+ require("mail/constants.php");
+ 
+
+ 
 class LoginClass extends DB
 {
     public $db;
@@ -50,6 +57,8 @@ class LoginClass extends DB
         $res = $this->conn->query($query);
         $querya = "SELECT * FROM user_table WHERE  mobile='$mobile'";
         $resa = $this->conn->query($querya);
+
+        $otp = time();
     
 
         if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($dob) || empty($gender) || empty($mobile) || empty($address)) {
@@ -98,19 +107,46 @@ class LoginClass extends DB
            }else{
                 move_uploaded_file($file_temp, $move_image);
            
-                $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address,image) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobileno','$address','$uploaded_image')";
+                $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address,image,otp,flag) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobileno','$address','$uploaded_image','$otp','1')";
                 $result = $this->conn->query($qry);
+                
                 if($result){
-                    $txt = "<div class='alert alert-success'>Successfully inserted</div>";
+                    // $txt = "<div class='alert alert-success'></div>";
+                    // return $txt;
+                  $this->sendmail($email,$otp);
+                    return "<script>window.location='confirmotp.php?id=$email';</script>";
+                }
+                else{
+                    $txt = "<div class='alert alert-danger'>Something wrong</div>";
                     return $txt;
                 }
             }
             }
     }
+    public function otpcheck($otp,$id)
+    {
+        $qry = "SELECT * FROM user_table WHERE email='$id' AND otp='$otp' and flag=1";
+        $result = $this->conn->query($qry);
+        
+			
+        if (mysqli_num_rows($result)>0) {
 
+            $qry = "UPDATE user_table
+            SET
+            
+            flag          		= '0' 
+
+            WHERE email        = '$id'";
+            $result = $this->conn->query($qry);
+            return "<script>window.location='login.php';</script>";
+         }else{
+             $txt = "<div class='alert alert-danger'>Invalid Otp</div>";
+                    return $txt;
+         }
+    }
     // User Login
     public function userLogin($email,$password, $link){
-        $qry = "SELECT * FROM user_table WHERE email='$email' AND password='$password'";
+        $qry = "SELECT * FROM user_table WHERE email='$email' AND password='$password' and flag=0";
         $result = $this->conn->query($qry);
         $value = mysqli_fetch_array($result);
 			
@@ -134,11 +170,11 @@ class LoginClass extends DB
     {
         $password = mysqli_real_escape_string($this->conn, $data['password']);
         $password1 = mysqli_real_escape_string($this->conn, $data['password1']);
-        if ( strlen ($password) < 6) {  
+        if (empty($password) || empty($password1)) {
+            return "<span style = 'color:red';>Field Must not be empty</span>";  
+        }elseif ( strlen ($password) < 6) {  
             return "<span style = 'color:red';>Password must have 6 digits.</span>";  
                      
-        }elseif (empty($password) || empty($password1)) {
-            return "<span style = 'color:red';>Field Must not be empty</span>";  
         }elseif ($password==$password1) {
            
             $qry = "UPDATE admin_table 
@@ -155,5 +191,36 @@ class LoginClass extends DB
         
 
     }
+
+    
+ 
+    public function sendmail($useremail,$otp){
+    $mail = new PHPMailer\PHPMailer\PHPMailer();
+   
+   try {
+      
+       $mail->IsSMTP(); // enable SMTP
+   
+       $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+       $mail->SMTPAuth = true; // authentication enabled
+       $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+       $mail->Host = "smtp.gmail.com";
+       $mail->Port = 465; // or 587
+       $mail->IsHTML(true);
+       $mail->Username = "robinhossainrabbiz5@gmail.com";
+       $mail->Password =PASSWORD;
+       $mail->SetFrom("robinhossainrabbiz5@gmail.com");
+       // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');   
+        $mail->isHTML(true); 
+       $mail->Subject = "Your Otp And link";
+       $mail->Body = "$otp";
+       $mail->AddAddress($useremail);
+       $mail->Send();
+       
+   } catch (Exception $e) {
+        
+   }
+   
+   }
 }
 ?>

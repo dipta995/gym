@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2021 at 05:01 PM
+-- Generation Time: Nov 04, 2021 at 06:34 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -208,6 +208,7 @@ CREATE TABLE `user_table` (
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(155) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `flag` tinyint(10) NOT NULL DEFAULT 0,
+  `otp` int(11) NOT NULL,
   `reg_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -215,11 +216,12 @@ CREATE TABLE `user_table` (
 -- Dumping data for table `user_table`
 --
 
-INSERT INTO `user_table` (`user_id`, `first_name`, `last_name`, `email`, `password`, `dob`, `gender`, `mobile`, `address`, `image`, `flag`, `reg_at`) VALUES
-(12, 'a', 'a', 'admifn@gmail.com', '44444444', '2021-09-26', 'male', '+8801444444444', 'fdf', 'img/7c7c531de2.png', 0, '2021-10-07 15:05:04'),
-(13, 'dipa', 'dey', 'dipta995@gmail.com', '123456', '2021-09-26', 'male', '+8801123456789', 'df', 'img/91eae5a561.png', 0, '2021-10-08 02:43:10'),
-(14, 'Dipta', 'Dey', 'dipta@gmail.com', '12345678', '2021-10-04', 'male', '+8801111111111', 'bcv', 'img/b336edb0f1.png', 0, '2021-10-26 08:57:16'),
-(15, 'Dipta', 'Dey', 'dipta1@gmail.com', '12345678', '2021-10-03', 'male', '+8801111111111', 'xfzg', 'img/88ed54f7f8.png', 0, '2021-10-26 09:12:01');
+INSERT INTO `user_table` (`user_id`, `first_name`, `last_name`, `email`, `password`, `dob`, `gender`, `mobile`, `address`, `image`, `flag`, `otp`, `reg_at`) VALUES
+(12, 'a', 'a', 'admifn@gmail.com', '44444444', '2021-09-26', 'male', '+8801444444444', 'fdf', 'img/7c7c531de2.png', 0, 0, '2021-10-07 15:05:04'),
+(13, 'dipa', 'dey', 'dipta95@gmail.com', '123456', '2021-09-26', 'male', '+8801123456789', 'df', 'img/91eae5a561.png', 0, 0, '2021-10-08 02:43:10'),
+(14, 'Dipta', 'Dey', 'dipta@gmail.com', '12345678', '2021-10-04', 'male', '+8801111111111', 'bcv', 'img/b336edb0f1.png', 0, 0, '2021-10-26 08:57:16'),
+(15, 'Dipta', 'Dey', 'dipta1@gmail.com', '12345678', '2021-10-03', 'male', '+8801111111111', 'xfzg', 'img/88ed54f7f8.png', 0, 0, '2021-10-26 09:12:01'),
+(26, 'Dipta', 'Dey', 'dipta995@gmail.com', '12345678', '2021-10-31', 'male', '+8801111111111', 'fsd', 'img/aea5f0085f.png', 0, 1636044061, '2021-11-04 16:41:01');
 
 --
 -- Indexes for dumped tables
@@ -335,7 +337,7 @@ ALTER TABLE `salary_table`
 -- AUTO_INCREMENT for table `user_table`
 --
 ALTER TABLE `user_table`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
