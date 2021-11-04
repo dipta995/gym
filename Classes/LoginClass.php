@@ -1,9 +1,6 @@
 <?php 
 include_once 'db.php';
-require("mail/src/PHPMailer.php");
- require("mail/src/SMTP.php");
- require("mail/src/Exception.php");
- require("mail/constants.php");
+
  
 
  
@@ -195,6 +192,10 @@ class LoginClass extends DB
     
  
     public function sendmail($useremail,$otp){
+        require("mail/src/PHPMailer.php");
+ require("mail/src/SMTP.php");
+ require("mail/src/Exception.php");
+ require("mail/constants.php");
     $mail = new PHPMailer\PHPMailer\PHPMailer();
    
    try {
