@@ -142,6 +142,13 @@ class LoginClass extends DB
          }
     }
     // User Login
+    public function showuserdata($id)
+    {
+       
+            $qry = "SELECT * FROM user_table WHERE user_id=$id and flag=0";
+            $result = $this->conn->query($qry);
+           return  mysqli_fetch_array($result);
+    }
     public function userLogin($email,$password, $link){
         $qry = "SELECT * FROM user_table WHERE email='$email' AND password='$password' and flag=0";
         $result = $this->conn->query($qry);
@@ -202,7 +209,7 @@ class LoginClass extends DB
       
        $mail->IsSMTP(); // enable SMTP
    
-       $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+       //$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
        $mail->SMTPAuth = true; // authentication enabled
        $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
        $mail->Host = "smtp.gmail.com";

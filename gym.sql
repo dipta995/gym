@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2021 at 06:34 PM
+-- Generation Time: Nov 18, 2021 at 08:41 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -143,7 +143,8 @@ INSERT INTO `order_table` (`order_id`, `mobile_no`, `pack_id`, `pack_price`, `pa
 (25, '+88011111111111', 8, 4444, '4', '4', 1, '2021-10-08', 0),
 (26, '+8801444444444', 8, 4444, '4', '4', 1, '2021-05-05', 3),
 (27, '+8801444444444', 8, 4444, '4', '4', 1, '2021-10-08', 0),
-(28, '+8801111111111', 8, 4444, '4', '4', 1, '2021-10-26', 0);
+(28, '+8801111111111', 8, 4444, '4', '4', 1, '2021-10-26', 0),
+(29, '+8801443333333', 8, 4444, '4', '4', 0, '2021-11-18', 0);
 
 -- --------------------------------------------------------
 
@@ -221,7 +222,7 @@ INSERT INTO `user_table` (`user_id`, `first_name`, `last_name`, `email`, `passwo
 (13, 'dipa', 'dey', 'dipta95@gmail.com', '123456', '2021-09-26', 'male', '+8801123456789', 'df', 'img/91eae5a561.png', 0, 0, '2021-10-08 02:43:10'),
 (14, 'Dipta', 'Dey', 'dipta@gmail.com', '12345678', '2021-10-04', 'male', '+8801111111111', 'bcv', 'img/b336edb0f1.png', 0, 0, '2021-10-26 08:57:16'),
 (15, 'Dipta', 'Dey', 'dipta1@gmail.com', '12345678', '2021-10-03', 'male', '+8801111111111', 'xfzg', 'img/88ed54f7f8.png', 0, 0, '2021-10-26 09:12:01'),
-(26, 'Dipta', 'Dey', 'dipta995@gmail.com', '12345678', '2021-10-31', 'male', '+8801111111111', 'fsd', 'img/aea5f0085f.png', 0, 1636044061, '2021-11-04 16:41:01');
+(29, 'd', 'd', 'dipta995@gmail.com', '12345678', '2021-11-10', 'male', '+8801443333333', 'df', 'img/f47fbdcdf1.png', 0, 1636097159, '2021-11-05 07:25:59');
 
 --
 -- Indexes for dumped tables
@@ -319,7 +320,7 @@ ALTER TABLE `food_table`
 -- AUTO_INCREMENT for table `order_table`
 --
 ALTER TABLE `order_table`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `package_table`
@@ -337,7 +338,7 @@ ALTER TABLE `salary_table`
 -- AUTO_INCREMENT for table `user_table`
 --
 ALTER TABLE `user_table`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

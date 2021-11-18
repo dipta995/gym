@@ -10,7 +10,7 @@
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#services" style="color: red">Package</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio" style="color: red">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about" style="color: red">About</a></li>
+                        
                         <li class="nav-item"><a class="nav-link" href="#team" style="color: red">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact" style="color: red">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: red">

@@ -7,23 +7,27 @@ include 'layouts/nav.php';
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper" style="padding-top: 100px;">
     <div class="row">
+   
         <div class="col-md-4">
             <h6 class="m-0 font-weight-bold text-primary">My Profile</h6>
          
             <div class="card">
+                 
             <?php 
             $birth="";
                  $view = $login->checkprofile();
                  foreach($view as $value){ 
             ?>
-                <span><b>First Name:</b> <?php echo $value['first_name']; ?></span>
-                <span><b>Last Name:</b> <?php echo $value['last_name']; ?></span>
+            
+             <img style="margin-top 10px;height: 100px; width: 100px;margin-left:70px;border-radius: 50px;border: 2px solid #ffc800;" src=" <?php echo $value['image']; ?>" alt="">
+                <span><b>Name:</b> <?php echo $value['first_name']." ".$value['last_name']; ?></span>
+                 
                 <span><b>Email Address:</b> <?php echo $value['email']; ?></span>
                 <span><b>Date of Birth:</b> <?php echo $birth = $value['dob']; ?></span>
                 <span><b>Gender:</b> <?php echo $value['gender']; ?></span>
                 <span><b>Mobile:</b> <?php echo $value['mobile']; ?></span>
                 <span><b>Present Address:</b> <?php echo $value['address']; ?></span>
-                <img style="height: 60px; width: 60px;" src=" <?php echo $value['image']; ?>" alt="">
+               
 <?php } ?>
             </div>
              
