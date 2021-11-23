@@ -40,210 +40,82 @@
             </div>
         </header>
         <!-- Package-->
-        <section  class="page-section" id="services">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Package</h2>
-                    <h3 class="section-subheading text-muted">Choose Your Package Here</h3>
-                </div>
-                <div class="row text-center">
-                <?php
+         
+           
+					<?php
                     $viewpack = $pack->viewPackage();
                     foreach($viewpack as $value){
                 ?>
-                    <div class="col-md-4">
-                        <h4 class="my-3"><?php echo $value['pack_name'];?></h4>
-                        <p class="text-muted"><?php echo $value['details'];?></p>
-                        <p class="text-muted">Month- <?php echo $value['month'];?></p>
-                        <p class="text-muted">Price- <?php echo $value['price'];?>(tk)</p>
-                        <p class="text-muted">Discount- <?php echo $value['discount'];?>(%)</p>
-                        <a href="applyPackage.php?package_id=<?php echo $value['package_id'] ?>"><button class="btn btn-primary text-uppercase" type="submit">Buy</button></a>
-                    </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </section>
+<div class="columns">
+  <ul class="price">
+    <li class="header"><?php echo $value['pack_name'];?></li>
+    <li class="grey"><?php echo $value['price'];?>(tk / <?php echo $value['month'];?> Months</li>
+    <li><?php echo $value['discount'];?>(%)</li>
+    
+    <li><?php echo $value['details'];?></li>
+    <li class="grey"><a href="applyPackage.php?package_id=<?php echo $value['package_id'] ?>" class="button">Buy Now</a></li>
+  </ul>
+  
+</div>
+ <?php } ?>
+ <br>
+       <style>
+* {
+  box-sizing: border-box;
+}
 
-        <!-- <div class="container">
-            <div class="section-title text-center">
-                <h1><span>Choose A Plans</span></h1>
-            </div>
-            <div class="table-responsive">
-                <table class="table pricing-table text-center">
-                    <thead>
-                        <tr>
-                            <td class="pattern-4">
-                                
-                            </td>
-                            <td class="pattern-3">
-                                <h4>Package 1</h4>
-                                <span>Quarterly</span>
-                                <p>3 Months Plan</p>
-                            </td>
-                            <td class="pattern-5">
-                                <h4>Package 2</h4>
-                                <span>Half Yearly</span>
-                                <p>6 Months Plann</p>
-                            </td>
-                            <td class="pattern-6">
-                                <h4>Package 3</h4>
-                                <span>Yearly</span>
-                                <p>Yearly plan</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <p>Subscription Plans</p>
-                            </td>
-                            <td>
-                                <p>3 Month Subscription</p>
-                            </td>
-                            <td>
-                                <p>6 Month Subscription</p>
-                            </td>
-                            <td>
-                                <p>Year Subscription</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Personal Trainers</p>
-                            </td>
-                            <td>
-                                <p>Self Directed Trainers</p>
-                            </td>
-                            <td>
-                                <p>Personal Trainers</p>
-                            </td>
-                            <td>
-                                <p>High Profestional Trainers</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Individual lockers</p>
-                            </td>
-                            <td>
-                                <p>---</p>
-                            </td>
-                            <td>
-                                <p>---</p>
-                            </td>
-                            <td>
-                                <p>---</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Registration Fees</p>
-                            </td>
-                            <td>
-                                <p>2,500/BDT</p>
-                            </td>
-                            <td>
-                                <p>2,500/BDT</p>
-                            </td>
-                            <td>
-                                <p>2,500/BDT</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Monthly Fee (3)</p>
-                            </td>
-                            <td>
-                                <p>6,000/BDT</p>
-                            </td>
-                            <td>
-                                <p>12,000/BDT</p>
-                            </td>
-                            <td>
-                                <p>24,000/BDT</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Total</p>
-                            </td>
-                            <td>
-                                <p>8,500/BDT</p>
-                            </td>
-                            <td>
-                                <p>14,500/BDT</p>
-                            </td>
-                            <td>
-                                <p>26,500/BDT</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Discount</p>
-                            </td>
-                            <td>
-                                <p>1,500/BDT</p>
-                            </td>
-                            <td>
-                                <p>4,500/BDT</p>
-                            </td>
-                            <td>
-                                <p>9,500/BDT</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Payable</p>
-                            </td>
-                            <td>
-                                <p>7,000/BDT</p>
-                            </td>
-                            <td>
-                                <p>10,000/BDT</p>
-                            </td>
-                            <td>
-                                <p>17,000/BDT</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Fitness Assessment</p>
-                            </td>
-                            <td>
-                                <p><img src="img/icon/open-icon.png" alt="Awesome Image"></p>
-                            </td>
-                            <td>
-                                <p><img src="img/icon/open-icon.png" alt="Awesome Image"></p>
-                            </td>
-                            <td>
-                                <p><img src="img/icon/open-icon.png" alt="Awesome Image"></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Free Wifi </p>
-                            </td>
-                            <td>
-                                <p><img src="img/icon/open-icon.png" alt="Awesome Image"></p>
-                            </td>
-                            <td>
-                                <p><img src="img/icon/open-icon.png" alt="Awesome Image"></p>
-                            </td>
-                            <td>
-                                <p><img src="img/icon/open-icon.png" alt="Awesome Image"></p>
-                            </td>
-                        </tr>
-                        <tr class="button-row">
-                            <td></td>
-                            <td><a href="#" class="flip-flop-btn"><span data-hover="Subscribe Now">Join Now</span></a></td>
-                            <td><a href="#" class="flip-flop-btn"><span data-hover="Subscribe Now">Join Now</span></a></td>
-                            <td><a href="#" class="flip-flop-btn"><span data-hover="Subscribe Now">Join Now</span></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> -->
-        <!-- Portfolio Grid-->
+.columns {
+  float: left;
+  width: 33.3%;
+  padding: 8px;
+}
+
+.price {
+  list-style-type: none;
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.price:hover {
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+
+.price .header {
+  background-color: #111;
+  color: white;
+  font-size: 25px;
+}
+
+.price li {
+  border-bottom: 1px solid #eee;
+  padding: 20px;
+  text-align: center;
+}
+
+.price .grey {
+  background-color: #eee;
+  font-size: 20px;
+}
+
+.button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 600px) {
+  .columns {
+    width: 100%;
+  }
+}
+</style>
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
