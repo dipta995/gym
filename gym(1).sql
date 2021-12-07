@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2021 at 08:41 AM
+-- Generation Time: Dec 07, 2021 at 05:01 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -76,6 +76,13 @@ CREATE TABLE `contact_table` (
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `contact_table`
+--
+
+INSERT INTO `contact_table` (`id`, `name`, `email`, `phone`, `message`) VALUES
+(2, 'dddd', 'test@gmail.com', '01632315608', 'ghkfgd');
+
 -- --------------------------------------------------------
 
 --
@@ -134,18 +141,6 @@ CREATE TABLE `order_table` (
   `trainer_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `order_table`
---
-
-INSERT INTO `order_table` (`order_id`, `mobile_no`, `pack_id`, `pack_price`, `pack_month`, `pack_discount`, `status`, `created_at`, `trainer_id`) VALUES
-(24, '+88011111111111', 8, 4444, '4', '4', 1, '2021-10-08', 0),
-(25, '+88011111111111', 8, 4444, '4', '4', 1, '2021-10-08', 0),
-(26, '+8801444444444', 8, 4444, '4', '4', 1, '2021-05-05', 3),
-(27, '+8801444444444', 8, 4444, '4', '4', 1, '2021-10-08', 0),
-(28, '+8801111111111', 8, 4444, '4', '4', 1, '2021-10-26', 0),
-(29, '+8801443333333', 8, 4444, '4', '4', 0, '2021-11-18', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -167,7 +162,10 @@ CREATE TABLE `package_table` (
 --
 
 INSERT INTO `package_table` (`package_id`, `pack_name`, `details`, `month`, `price`, `discount`, `del_pack`) VALUES
-(8, 'test', 'tewsvsd', '4', 4444, 4, 0);
+(8, 'test', 'tewsvsd sgfsssssssssssssssss sdfaaaaaaaaaaaaaaaa sfassssssssssssssss', '4', 4444, 4, 0),
+(9, 'fds', 'fdsfsd', '44', 444, 4, 0),
+(10, 'gggg', '44r', '4', 444, 4, 0),
+(11, 'fsad', 'fsdfsd', '4', 44444, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -189,7 +187,8 @@ CREATE TABLE `salary_table` (
 --
 
 INSERT INTO `salary_table` (`salary_id`, `emp_id`, `month`, `salary`, `year`, `pay_at`) VALUES
-(3, 3, 'October', '10000', 2021, '2021-10-26 09:47:07');
+(3, 3, 'October', '10000', 2021, '2021-10-26 09:47:07'),
+(5, 3, 'December', '10000', 2021, '2021-12-04 03:37:24');
 
 -- --------------------------------------------------------
 
@@ -212,17 +211,6 @@ CREATE TABLE `user_table` (
   `otp` int(11) NOT NULL,
   `reg_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `user_table`
---
-
-INSERT INTO `user_table` (`user_id`, `first_name`, `last_name`, `email`, `password`, `dob`, `gender`, `mobile`, `address`, `image`, `flag`, `otp`, `reg_at`) VALUES
-(12, 'a', 'a', 'admifn@gmail.com', '44444444', '2021-09-26', 'male', '+8801444444444', 'fdf', 'img/7c7c531de2.png', 0, 0, '2021-10-07 15:05:04'),
-(13, 'dipa', 'dey', 'dipta95@gmail.com', '123456', '2021-09-26', 'male', '+8801123456789', 'df', 'img/91eae5a561.png', 0, 0, '2021-10-08 02:43:10'),
-(14, 'Dipta', 'Dey', 'dipta@gmail.com', '12345678', '2021-10-04', 'male', '+8801111111111', 'bcv', 'img/b336edb0f1.png', 0, 0, '2021-10-26 08:57:16'),
-(15, 'Dipta', 'Dey', 'dipta1@gmail.com', '12345678', '2021-10-03', 'male', '+8801111111111', 'xfzg', 'img/88ed54f7f8.png', 0, 0, '2021-10-26 09:12:01'),
-(29, 'd', 'd', 'dipta995@gmail.com', '12345678', '2021-11-10', 'male', '+8801443333333', 'df', 'img/f47fbdcdf1.png', 0, 1636097159, '2021-11-05 07:25:59');
 
 --
 -- Indexes for dumped tables
@@ -302,7 +290,7 @@ ALTER TABLE `check_table`
 -- AUTO_INCREMENT for table `contact_table`
 --
 ALTER TABLE `contact_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `employee_table`
@@ -320,19 +308,19 @@ ALTER TABLE `food_table`
 -- AUTO_INCREMENT for table `order_table`
 --
 ALTER TABLE `order_table`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `package_table`
 --
 ALTER TABLE `package_table`
-  MODIFY `package_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `package_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `salary_table`
 --
 ALTER TABLE `salary_table`
-  MODIFY `salary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `salary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_table`
