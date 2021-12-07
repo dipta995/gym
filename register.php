@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
                       <input type="number" min=0 class="form-control" placeholder="" name="mobile" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <div class="form-group">
-                      <label>Address</label>
+                      <label>Parmanent Address</label>
                       <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Address"></textarea>
                     </div>
                     <div class="form-group">

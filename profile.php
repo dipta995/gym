@@ -12,6 +12,7 @@ include 'layouts/nav.php';
             <h6 class="m-0 font-weight-bold text-primary">My Profile</h6>
          
             <div class="card">
+              
                  
             <?php 
             $birth="";
@@ -26,9 +27,10 @@ include 'layouts/nav.php';
                 <span><b>Date of Birth:</b> <?php echo $birth = $value['dob']; ?></span>
                 <span><b>Gender:</b> <?php echo $value['gender']; ?></span>
                 <span><b>Mobile:</b> <?php echo $value['mobile']; ?></span>
-                <span><b>Present Address:</b> <?php echo $value['address']; ?></span>
-               
+                <span><b>Parmanent Address:</b> <?php echo $value['address']; ?></span>
+        <a style="float: right;" href="edit.php">edit</a>       
 <?php } ?>
+
             </div>
              
         </div>
@@ -51,7 +53,7 @@ include 'layouts/nav.php';
                             
                             <th>Discount</th>
                             <th>Expair at</th>
-                            <td>Status</td>
+                           
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -78,15 +80,15 @@ include 'layouts/nav.php';
                         <td><?php echo $value['price']-($value['price']*($value['discount']/100)); ?> Taka</td>
                             <td><?php echo $value['discount']; ?>%</td>
                             <td><?php echo $effectiveDate = date('Y-m-d', strtotime("+".$value['month']." months", strtotime($value['created_at']))); ?></td>
-                        
+                         <td>
                           <?php $date=date("Y-m-d");
                              if ($effectiveDate< $date) {
 								
-                                echo "<td>expaired</td>";
+                                echo "<p style='color:red;'>expaired</p>";
                             }else{ 
                                 
-                                echo "<td>Running</td>"; ?>
-  <td>
+                                echo "<p style='color:blue;'>Running</p>"; ?>
+ 
                                 <?php
                                     if($value['status']==0){
                                         echo "<span style='color:red;'>Pending</span> "; 
@@ -125,6 +127,7 @@ include 'layouts/nav.php';
             </div>
             </div>
             </div>
+            
         </div>
     </div>
 </div>

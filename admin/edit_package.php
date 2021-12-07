@@ -73,7 +73,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </div>
             <div class="form-group">
               <label>Discount (%)</label>
-              <input name="discount" type="text" class="form-control" value="<?php echo $value['discount'];?>">
+              <input name="discount" type="number" min="0" step="1"  class="form-control" value="<?php echo $value['discount'];?>">
             </div>
  
             <?php }} ?>

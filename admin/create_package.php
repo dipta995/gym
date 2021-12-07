@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="form-group">
               <label>Discount (%)</label>
-              <input name="discount" type="text" class="form-control" placeholder="Enter discount">
+              <input name="discount" type="number" min="0" step="1" value="0" class="form-control" placeholder="Enter discount">
             </div>
           
             <button type="submit" class="btn btn-primary">Submit</button>

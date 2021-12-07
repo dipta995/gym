@@ -17,7 +17,7 @@ class PacageClass extends DB
           $discount = mysqli_real_escape_string($this->conn, $data['discount']);
            
 
-          if (empty($pack_name) || empty($details) || empty($month) || empty($price) || empty($discount)) {
+          if (empty($pack_name) || empty($details) || empty($month) || empty($price) ) {
                 $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
                 return $txt;
           }else{
@@ -70,7 +70,7 @@ class PacageClass extends DB
             $discount = mysqli_real_escape_string($this->conn, $data['discount']);
            
             
-            if (empty($pack_name) || empty($details) || empty($month) || empty($price) || empty($discount)) {
+            if (empty($pack_name) || empty($details) || empty($month) || empty($price)) {
                 $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
                 return $txt;
             }else{
@@ -96,6 +96,8 @@ class PacageClass extends DB
             $pack_price = mysqli_real_escape_string($this->conn, $data['pack_price']);
             $pack_month = mysqli_real_escape_string($this->conn, $data['pack_month']);
             $pack_discount = mysqli_real_escape_string($this->conn, $data['pack_discount']);
+            $trainer = mysqli_real_escape_string($this->conn, $data['trainer']);
+            
 
             $que = $this->conn->query("SELECT * FROM order_table WHERE pack_id=$package_id AND status=0 AND mobile_no=$mobile");
             $value = mysqli_fetch_array($que);
@@ -104,7 +106,7 @@ class PacageClass extends DB
                 return $txt;
              }else{
 
-                 $qry = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount)VALUES('$mobile','$package_id','$pack_price','$pack_month','$pack_discount')";
+                 $qry = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,trainer_id)VALUES('$mobile','$package_id','$pack_price','$pack_month','$pack_discount','$trainer')";
                  $result = $this->conn->query($qry);
                      if($result){
                          $txt = "<div class='alert alert-success'>Order Successfully</div>";
@@ -127,7 +129,7 @@ class PacageClass extends DB
         }
         public function viewOrderadmin(){
          
-            $qry = "SELECT * FROM order_table inner JOIN package_table ON order_table.pack_id=package_table.package_id inner JOIN user_table ON order_table.mobile_no=user_table.mobile  ORDER by status ASC";
+            $qry = "SELECT * FROM order_table left join  employee_table   on  order_table .trainer_id=employee_table.emp_id inner JOIN package_table ON order_table.pack_id=package_table.package_id inner JOIN user_table ON order_table.mobile_no=user_table.mobile  ORDER by status ASC";
             
             $result = $this->conn->query($qry);
             return $result;

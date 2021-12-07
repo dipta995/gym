@@ -284,7 +284,7 @@ class EmployeeClass extends DB
 
 
             if($result === TRUE){
-                $txt = "<div class='alert alert-success'>Successfully Deleted</div>";
+                $txt = "<div class='alert alert-success'> Ratting Successfull</div>";
                 return $txt;
             }
                 }

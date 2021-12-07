@@ -41,10 +41,11 @@ if(isset($_GET['delemp'])){
                         <th>Ratting</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Position</th>
+                        <th>Position||Joning Date</th>
                         <th>Salary <br></th>
                         <th>Address</th>
                         <th>Image</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -80,7 +81,7 @@ if(isset($_GET['delemp'])){
               </style></td>
                         <td><?php echo $value['emp_email']; ?></td>
                         <td><?php echo $value['emp_phone']; ?></td>
-                        <td><?php echo $value['emp_job_status']; ?> </td>
+                        <td><?php echo $value['emp_job_status']."||". date("F j, Y, g:i a", strtotime($value['create_emp'])); ?> </td>
                         <td><?php echo $value['emp_salary']; ?> Taka</td>
                         <td><?php echo $value['emp_address']; ?> </td>
                         <td><img style="height: 60px; width: 60px;" src="<?php echo $value['emp_image']; ?>" alt=""> </td>

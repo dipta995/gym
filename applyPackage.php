@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
 			<br>
 		 
 			<div class="form-group">
-                      <button style="float:left; type="submit" class="btn btn-primary btn-block">Confirm</button>
+                      <button style="float:left;" type="submit" class="btn btn-primary btn-block">Confirm</button>
                     </div>
                
                 <?php } ?>

@@ -101,7 +101,13 @@ class LoginClass extends DB
            if(empty($file_ext)){
                 $txt = "<span style='color:red; font-size: 15px;'>Image is required</span>";
                 return $txt;
-           }else{
+           }else if ($file_size >1048567) {
+            return "<span class='error'>Image Size should be less then 1MB! </span>";
+           } elseif (in_array($file_ext, $permited) === false) {
+            return "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+           }
+           
+           else{
                 move_uploaded_file($file_temp, $move_image);
            
                 $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address,image,otp,flag) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobileno','$address','$uploaded_image','$otp','1')";
@@ -120,6 +126,88 @@ class LoginClass extends DB
             }
             }
     }
+    public function updateProfile($data,$file,$userid)
+    {
+        $first_name = mysqli_real_escape_string($this->conn, $data['first_name']);
+        $last_name = mysqli_real_escape_string($this->conn, $data['last_name']);
+        $mobile = mysqli_real_escape_string($this->conn, $data['mobile']);
+        $password = mysqli_real_escape_string($this->conn, $data['password']);
+        $def="+8801";
+        $mobileno = $def.$mobile;
+       
+        $query = "SELECT * FROM user_table WHERE  mobile='$mobileno' and user_id !=$userid";
+        $mobilecheck = $this->conn->query($query);
+
+        $permited  = array('jpg', 'jpeg', 'png', 'gif');
+        $file_name = $file['image']['name'];
+        $file_size = $file['image']['size'];
+        $file_temp = $file['image']['tmp_name'];
+
+        $div            = explode('.', $file_name);
+        $file_ext       = strtolower(end($div));
+        $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
+        $uploaded_image = "img/".$unique_image;
+        $move_image = "img/".$unique_image;
+       
+
+
+
+
+        if (empty($first_name) || empty($last_name) || empty($password) || empty($mobile)) {
+            $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
+            return $txt;
+    }elseif (!preg_match ("/^[a-zA-z]*$/", $first_name) ){
+        $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For First name</span>";
+        return $txt;
+    }elseif (!preg_match ("/^[a-zA-z]*$/", $last_name) ){
+        $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For First name</span>";
+        return $txt;
+    } 
+    elseif (mysqli_num_rows($mobilecheck)>0){
+        $txt = "<span style='color:red; font-size: 15px;'>This Mobile Number Already been Registered </span>";
+        return $txt;
+    }elseif ( strlen ($mobile) != 9) {  
+        return "<span style = 'color:red';>Mobile must have 9 digits.</span>";  
+                 
+    }elseif ( strlen ($password) < 6) {  
+        return "<span style = 'color:red';>Password must have 6 digits or More.</span>";  
+                 
+    }elseif (empty($file_ext)) {
+        $qry = "UPDATE user_table
+            SET
+            
+            first_name          		= '$first_name',
+            last_name          		= '$last_name',
+            password          		= '$password',
+            mobile          		= '$mobileno'
+
+
+            WHERE user_id        = '$userid'";
+            $result = $this->conn->query($qry);
+    }else{
+        if ($file_size >1048567) {
+            return "<span class='error'>Image Size should be less then 1MB! </span>";
+           } elseif (in_array($file_ext, $permited) === false) {
+            return "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+           }else{
+        $qry = "UPDATE user_table
+        SET
+        
+        first_name          		= '$first_name',
+        last_name          		= '$last_name',
+        password          		= '$password',
+        mobile          		= '$mobileno',
+        image                   = '$uploaded_image'
+        
+
+        WHERE user_id        = '$userid'";
+        $result = $this->conn->query($qry);
+        move_uploaded_file($file_temp, $move_image);
+           }
+    }
+    
+    
+    }
     public function otpcheck($otp,$id)
     {
         $qry = "SELECT * FROM user_table WHERE email='$id' AND otp='$otp' and flag=1";
@@ -130,9 +218,7 @@ class LoginClass extends DB
 
             $qry = "UPDATE user_table
             SET
-            
             flag          		= '0' 
-
             WHERE email        = '$id'";
             $result = $this->conn->query($qry);
             return "<script>window.location='login.php';</script>";
