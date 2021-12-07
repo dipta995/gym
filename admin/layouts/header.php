@@ -113,7 +113,16 @@ $adminid = $_SESSION['admin_id'];
           <span>Contact</span>
         </a>
       </li>
+      <?php  if ($status==0) { ?>
       <li class="nav-item">
+        <a target="_blank" class="nav-link" href=" https://dashboard.tawk.to/?lang=en#/chat">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Live Chat</span>
+        </a>
+      </li>
+      <?php } ?>
+     
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
           <i class="fas fa-fw fa-table"></i>
@@ -126,8 +135,8 @@ $adminid = $_SESSION['admin_id'];
             <a class="collapse-item" href="datatables.html">DataTables</a>
           </div>
         </div>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
         <a class="nav-link" href="ui-colors.html">
           <i class="fas fa-fw fa-palette"></i>
           <span>UI Colors</span>
@@ -158,7 +167,7 @@ $adminid = $_SESSION['admin_id'];
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span>
         </a>
-      </li>
+      </li> -->
       <hr class="sidebar-divider">
       <div class="version" id="version-ruangadmin"></div>
     </ul>
