@@ -156,6 +156,17 @@ class PacageClass extends DB
                 return "<span style='color:green'>Something Wrong</span>";
             }
         }
+        public function removeImg($id)
+        {
+            
+            $qry = "DELETE  FROM image_table WHERE image_id=$id";
+            $result = $this->conn->query($qry);
+            if ($result) {
+                return "<span style='color:green'>Image removed</span>";
+            }else{
+                return "<span style='color:green'>Something Wrong try again</span>";
+            }
+        }
 
         public function removeorder($order)
         {

@@ -3,11 +3,48 @@ include_once 'db.php';
 class EmployeeClass extends DB
 {
         public $db;
-        public function __construct()
+        
+        public function createnewgalaryImage($data,$file)
         {
-            $conn = $this->connect();
+             
+        
+    
+            $caption = mysqli_real_escape_string($this->conn, $data['caption']);
+                $permited  = array('jpg', 'jpeg', 'png', 'gif');
+                $file_name = $file['image']['name'];
+                $file_size = $file['image']['size'];
+                $file_temp = $file['image']['tmp_name'];
+    
+                $div            = explode('.', $file_name);
+                $file_ext       = strtolower(end($div));
+                $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
+                $uploaded_image = "img/".$unique_image;
+                $move_image = "img/".$unique_image;
+               
+    
+               
+               if(empty($file_ext)){
+                    $txt = "<span style='color:red; font-size: 15px;'>Image is required</span>";
+                    return $txt;
+               }
+               else if ($file_size >1048567) {
+                return "<span class='error'>Image Size should be less then 1MB! </span>";
+               } elseif (in_array($file_ext, $permited) === false) {
+                return "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+               }
+               else{
+                    move_uploaded_file($file_temp, $move_image);
+               
+                    $qry = "INSERT into  image_table (caption,image_link) values('$caption','$uploaded_image')";
+                    $result = $this->conn->query($qry);
+                     
+                    
+                    if($result){
+                        return "<script>window.location='images.php';</script>";
+                    }
+                }
+                
         }
-
         public function createnewEmployee($data,$file)
         {
             $emp_name = mysqli_real_escape_string($this->conn, $data['emp_name']);
@@ -242,7 +279,12 @@ class EmployeeClass extends DB
 			$result = $this->conn->query($qry);
             return $result;
         }
-
+        public function viewimage()
+        {
+            $qry = "SELECT * from image_table";
+			$result = $this->conn->query($qry);
+            return $result;
+        }
         public function deleteSalary($id){
 			$qry = "DELETE FROM salary_table WHERE salary_id='$id'";
 			$delsalary =$this->conn->query($qry);
