@@ -8,7 +8,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="./">Home</a></li>
         <li class="breadcrumb-item">Order</li>
-        <li class="breadcrumb-item active" aria-current="page">Order</li>
+       
     </ol>
     </div>
 
@@ -60,11 +60,12 @@
                         $i = 0;
                         $view = $pack->viewOrderadmin();
                         foreach($view as $value){
+                            $i++;
                     ?>
                     <tr>
-                        <td><?php echo $i+1; ?></td>
+                        <td><?php echo $i; ?></td>
                         <td><?php echo $value['order_id']; ?></td>
-                        <td><a href="users.php?userid=<?php echo $value['user_id']; ?>"><?php echo  $value['first_name']." ".$value['last_name']; ?></a></td>
+                        <td><a href="singleuser.php?id=<?php echo $value['user_id']; ?>"><?php echo  $value['first_name']." ".$value['last_name']; ?></a></td>
                         <td><?php echo $value['mobile_no']; ?></td>
                         <td><?php echo $value['pack_name']; ?></td>
                         <td><?php echo $value['created_at']."<br>".$effectiveDate = date('Y-m-d', strtotime("+".$value['month']." months", strtotime($value['created_at']))); ?></td>

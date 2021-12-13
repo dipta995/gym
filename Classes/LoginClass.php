@@ -56,7 +56,10 @@ class LoginClass extends DB
         $resa = $this->conn->query($querya);
 
         $otp = time();
-    
+        $birthdate = new DateTime($dob);
+          $now = new DateTime();
+          $interval = $now->diff($birthdate);
+           
 
         if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($dob) || empty($gender) || empty($mobile) || empty($address)) {
                 $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
@@ -81,6 +84,11 @@ class LoginClass extends DB
             return "<span style = 'color:red';>Password must have 6 digits.</span>";  
                      
         }
+        elseif ( $interval->y < 16) {  
+            return "<span style = 'color:red';>Minimum 16 Year Required.</span>";  
+                     
+        }
+        
         
         
         else{
@@ -118,6 +126,98 @@ class LoginClass extends DB
                     // return $txt;
                   $this->sendmail($email,$otp);
                     return "<script>window.location='confirmotp.php?id=$email';</script>";
+                }
+                else{
+                    $txt = "<div class='alert alert-danger'>Something wrong</div>";
+                    return $txt;
+                }
+            }
+            }
+    }
+    public function insertUserAdmin($data,$file){
+        $first_name = mysqli_real_escape_string($this->conn, $data['first_name']);
+        $last_name = mysqli_real_escape_string($this->conn, $data['last_name']);
+        $email = mysqli_real_escape_string($this->conn, $data['email']);
+        $password = mysqli_real_escape_string($this->conn, $data['password']);
+        $dob = mysqli_real_escape_string($this->conn, $data['dob']);
+        $gender = mysqli_real_escape_string($this->conn, $data['gender']);
+        $mobile = mysqli_real_escape_string($this->conn, $data['mobile']);
+        $address = mysqli_real_escape_string($this->conn, $data['address']);
+        $def="+8801";
+        $mobileno = $def.$mobile;
+        $query = "SELECT * FROM user_table WHERE email='$email'";
+        $res = $this->conn->query($query);
+        $querya = "SELECT * FROM user_table WHERE  mobile='$mobile'";
+        $resa = $this->conn->query($querya);
+
+        $otp = time();
+    
+ $otp = time();
+        $birthdate = new DateTime($dob);
+          $now = new DateTime();
+          $interval = $now->diff($birthdate);
+        if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($dob) || empty($gender) || empty($mobile) || empty($address)) {
+                $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
+                return $txt;
+        }elseif (!preg_match ("/^[a-zA-z]*$/", $first_name) ){
+            $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For First name</span>";
+            return $txt;
+        }elseif (!preg_match ("/^[a-zA-z]*$/", $last_name) ){
+            $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For First name</span>";
+            return $txt;
+        }elseif (mysqli_num_rows($res)>0){
+            $txt = "<span style='color:red; font-size: 15px;'>This Email Already been Registered </span>";
+            return $txt;
+        }
+        elseif (mysqli_num_rows($resa)>0){
+            $txt = "<span style='color:red; font-size: 15px;'>This Mobile Number Already been Registered </span>";
+            return $txt;
+        }elseif ( strlen ($mobile) != 9) {  
+            return "<span style = 'color:red';>Mobile must have 9 digits.</span>";  
+                     
+        }elseif ( strlen ($password) < 6) {  
+            return "<span style = 'color:red';>Password must have 6 digits.</span>";  
+                     
+        } elseif ( $interval->y < 16) {  
+            return "<span style = 'color:red';>Minimum 16 Year Required.</span>";  
+                     
+        }
+        
+        
+        else{
+
+            $permited  = array('jpg', 'jpeg', 'png', 'gif');
+            $file_name = $file['image']['name'];
+            $file_size = $file['image']['size'];
+            $file_temp = $file['image']['tmp_name'];
+
+            $div            = explode('.', $file_name);
+            $file_ext       = strtolower(end($div));
+            $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
+            $uploaded_image = "img/".$unique_image;
+            $move_image = "img/".$unique_image;
+           
+
+           
+           if(empty($file_ext)){
+                $txt = "<span style='color:red; font-size: 15px;'>Image is required</span>";
+                return $txt;
+           }else if ($file_size >1048567) {
+            return "<span class='error'>Image Size should be less then 1MB! </span>";
+           } elseif (in_array($file_ext, $permited) === false) {
+            return "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+           }
+           
+           else{
+                move_uploaded_file($file_temp, $move_image);
+           
+                $qry = "INSERT into user_table(first_name,last_name,email,password,dob,gender,mobile,address,image,otp,flag) values('$first_name','$last_name','$email','$password','$dob','$gender','$mobileno','$address','$uploaded_image','$otp','0')";
+                $result = $this->conn->query($qry);
+                
+                if($result){
+                    $txt = "<div class='alert alert-success'>Successfully New Customer Created</div>";
+                    return $txt;
+                 
                 }
                 else{
                     $txt = "<div class='alert alert-danger'>Something wrong</div>";
@@ -208,6 +308,23 @@ class LoginClass extends DB
     
     
     }
+
+    public function userList()
+    {
+
+            $qry = "SELECT * FROM user_table  where flag=0 order by user_id DESC";
+            return $result = $this->conn->query($qry);
+           
+    }
+    public function userListSingle($id)
+    {
+
+            $qry = "SELECT * FROM user_table  where user_id=$id";
+             $result = $this->conn->query($qry);
+           return $value = mysqli_fetch_array($result);
+           
+    }
+
     public function otpcheck($otp,$id)
     {
         $qry = "SELECT * FROM user_table WHERE email='$id' AND otp='$otp' and flag=1";

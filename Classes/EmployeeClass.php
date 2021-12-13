@@ -3,6 +3,10 @@ include_once 'db.php';
 class EmployeeClass extends DB
 {
         public $db;
+          public function __construct()
+        {
+            $conn = $this->connect();
+        }
         
         public function createnewgalaryImage($data,$file)
         {
@@ -10,6 +14,25 @@ class EmployeeClass extends DB
         
     
             $caption = mysqli_real_escape_string($this->conn, $data['caption']);
+            $caption_two = mysqli_real_escape_string($this->conn, $data['caption_two']);
+            $brif = mysqli_real_escape_string($this->conn, $data['brif']);
+            if (empty($caption)||empty($caption_two)||empty($brif)) {
+                $txt = "<span style='color:red; font-size: 15px;'>Field Must no be empty</span>";
+            }elseif ( strlen ($caption) > 15) {  
+                return "<span style = 'color:red';>Caption  must have 15  or Less currecter .</span>";  
+                         
+            }
+            elseif ( strlen ($caption_two) > 15) {  
+                return "<span style = 'color:red';>Caption  must have 15  or Less currecter .</span>";  
+                         
+            }
+            elseif ( strlen ($brif) > 150) {  
+                return "<span style = 'color:red';>Caption  must have 150  or Less currecter .</span>";  
+                         
+            }else{
+
+           
+
                 $permited  = array('jpg', 'jpeg', 'png', 'gif');
                 $file_name = $file['image']['name'];
                 $file_size = $file['image']['size'];
@@ -35,14 +58,15 @@ class EmployeeClass extends DB
                else{
                     move_uploaded_file($file_temp, $move_image);
                
-                    $qry = "INSERT into  image_table (caption,image_link) values('$caption','$uploaded_image')";
+                    $qry = "INSERT into  image_table (caption,caption_two,brif,image_link) values('$caption','$caption_two','$brif','$uploaded_image')";
                     $result = $this->conn->query($qry);
                      
                     
                     if($result){
                         return "<script>window.location='images.php';</script>";
                     }
-                }
+                } 
+            }
                 
         }
         public function createnewEmployee($data,$file)
@@ -91,12 +115,20 @@ class EmployeeClass extends DB
                 $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
                 $uploaded_image = "img/".$unique_image;
                 $move_image = "img/".$unique_image;
-               
+                
     
                
                if(empty($file_ext)){
                     $txt = "<span style='color:red; font-size: 15px;'>Image is required</span>";
                     return $txt;
+               }
+                if ($file_size >1048567) {
+            return "<span class='error'>Image Size should be less then 1MB! </span>";
+           } elseif (in_array($file_ext, $permited) === false) {
+            return "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+           
+
+
                }else{
                     move_uploaded_file($file_temp, $move_image);
                

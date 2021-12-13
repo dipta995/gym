@@ -93,7 +93,7 @@ if(isset($_GET['delemp'])){
                         <?php } ?>
                         <?php
                         $s = $emp->salaraycheck( $value['emp_id']);
-                        if ($s>0) { }else{
+                        if ($s>0) { echo "<td><p style='color:green;'>Paid</p> </td>"; }else{
                       ?>
                         <td><a href="payemployee.php?salid=<?php echo $value['emp_id'] ;?>" class="btn btn-sm btn-danger">Pay</a></td> <?php } ?>
                     </tr>

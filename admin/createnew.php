@@ -1,12 +1,12 @@
 <?php include 'layouts/header.php';
  
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $createPackage = $create->insertUser($_POST,$_FILES);
+    $createPackage = $create->insertUserAdmin($_POST,$_FILES);
 }
 ?>
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4"> 
     <h1 class="h3 mb-0 text-gray-800">Admite new Customer</h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -33,20 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      
             <div class="form-group">
               <label>First Name</label>
-              <input name="first_name" type="text" class="form-control" placeholder="Enter package">
+              <input name="first_name" type="text" class="form-control" placeholder="Enter first name">
             </div>
             <div class="form-group">
               <label>Last Name</label>
-              <input name="last_name" type="text" class="form-control" placeholder="Enter package">
+              <input name="last_name" type="text" class="form-control" placeholder="Enter last name">
             </div>
             <div class="form-group">
               <label>Email</label>
-              <input name="email" type="text" class="form-control" placeholder="Enter package">
+              <input name="email" type="text" class="form-control" placeholder="Enter Email">
               <input name="password" type="hidden" value="123456" class="form-control" placeholder="Enter package">
             </div>
             <div class="form-group">
               <label>DOB</label>
-              <input name="dob" type="date" class="form-control" placeholder="Enter package">
+              <input name="dob" max="<?php echo date('Y-m-d'); ?>" type="date" class="form-control">
             </div>
             <div class="form-group">
               <label>Gender</label><br>
@@ -61,11 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="form-group">
               <label>Address</label>
-              <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Package Description"></textarea>
+              <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Address"></textarea>
             </div>
             <div class="form-group">
-              <label>Image</label>
-              <input name="image" type="file" class="form-control" placeholder="Enter month" min="3">
+              <label>Image [jpg,jpeg,png,gif]</label>
+              <input name="image" type="file" class="form-control" >
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

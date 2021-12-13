@@ -29,10 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="card-body" >
           <form method="POST" enctype="multipart/form-data">
           <div class="form-group">
-              <label>Caption</label>
+              <label>Caption One</label>
               <input required name="caption" type="text" class="form-control" >
             </div>
-            
+            <div class="form-group">
+              <label>Caption Two</label>
+              <input required name="caption_two" type="text" class="form-control" >
+            </div>
+            <div class="form-group">
+              <label>Short Brif</label>
+              <textarea required name="brif" class="form-control" ></textarea>
+            </div>
             <div class="form-group">
               <label>Image</label>
               <input name="image" type="file" class="form-control">

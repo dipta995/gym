@@ -84,6 +84,12 @@ $adminid = $_SESSION['admin_id'];
           <span>Orders</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="users.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Users</span>
+        </a>
+      </li>
     
       <li class="nav-item">
         <a class="nav-link" href="food.php">

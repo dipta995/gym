@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <li class="breadcrumb-item active" aria-current="page">Create Salaray</li>
     </ol>
   </div>
-  <a class="btn btn-success" href="food.php"> Food Menu</a>
+<!--   <a class="btn btn-success" href="food.php"> Food Menu</a> -->
   <div class="row">
       <div class="col-lg-2"></div>
     <div class="col-lg-8">

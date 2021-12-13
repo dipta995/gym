@@ -31,11 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
               <label>Age limit</label>
              
-              <input name="age_limit"  class="form-control" type="text" placeholder="11,12,13">
+              <input name="age_limit"  class="form-control" type="text" placeholder="16,17,18,...">
             </div>
             <div class="form-group">
               <label>Food Menu</label>
-              <textarea name="menu" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Package Description"></textarea>
+              <textarea name="menu" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Food Menu"></textarea>
             </div>
             
             <button type="submit" class="btn btn-primary">Submit</button>

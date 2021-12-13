@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <input name="emp_salary" type="text" class="form-control" placeholder="Enter Salary">
             </div>
             <div class="form-group">
-              <label>Image</label>
+              <label>Image [jpg,jpeg,png,gif]</label>
               <input name="image" type="file" class="form-control">
             </div>
             <div class="form-group">

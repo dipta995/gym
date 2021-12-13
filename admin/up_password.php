@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h1 class="h3 mb-0 text-gray-800">Password</h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-      <li class="breadcrumb-item">Food</li>
+     
       <li class="breadcrumb-item active" aria-current="page">password</li>
     </ol>
   </div>

@@ -123,7 +123,7 @@ class PacageClass extends DB
                     WHERE order_id        = '$order'";
                     $result = $this->conn->query($qry);
                     if($result){
-                        $txt = "<div class='alert alert-success'>Approved</div>";
+                        $txt = "<div class='alert alert-success'>Order Confirm</div>";
                         return $txt;
                     }
         }
