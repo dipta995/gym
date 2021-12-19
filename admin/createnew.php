@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <div class="row">
       <div class="col-lg-2">
-        <a class="btn btn-success" href="createnew.php">Create new Customer</a>
+        <a class="btn btn-success" href="all_package.php">Sell Pack</a>
       </div>
     <div class="col-lg-8">
       <!-- Form Basic -->
