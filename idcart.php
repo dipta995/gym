@@ -11,6 +11,9 @@ $value=$idcart->generateidcart($orderid);
     $mob = "MOBILE NO :".$value['mobile'];
     $address = "ADDRESS :".$value['address'];
     $image = "admin/".$value['image'];
+    $start =  $value['created_at'];
+     $exp=  date('Y-m-d', strtotime("+".$value['month']." months", strtotime($value['created_at'])));
+     $daterange = "PACKAGE LENGTH :".$start. " To ".$exp;
 
 
 
@@ -40,6 +43,8 @@ $pdf->Cell(50,10,$mob,"A",0,'C',0);
 $pdf->SetXY(370,310); 
 $pdf->Cell(50,10,$dob,"A",0,'C',0); 
 $pdf->SetXY(370,330); 
+$pdf->Cell(50,10,$daterange,"A",0,'C',0); 
+$pdf->SetXY(370,350); 
 $pdf->Cell(50,10,$address,"A",0,'C',0); 
 
 
