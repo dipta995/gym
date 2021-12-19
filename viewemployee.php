@@ -10,7 +10,7 @@ if ($_SESSION['loginauth']!='user') {
  
 ?>
 <div class="container" style="padding-top: 100px;">
-  	<h4 class="text-center">Package</h4>
+  	<h4 class="text-center">Instructor's Overview</h4>
     <div class="row">
         <div class="col-md-6">
 <style>
@@ -61,7 +61,7 @@ button:hover, a:hover {
 <div class="card">
   <img src="admin/<?php echo $value['emp_image']; ?>" alt="John" style="width:100%">
   <h1><?php echo $value['emp_name']; ?></h1>
-  <p class="title"><?php echo $value['emp_job_status']; ?></p>
+  <p class="title"><?php echo 'Instructor'; ?></p>
   <p><?php echo $value['emp_email']; ?></p>
   <div style="margin: 24px 0;">
     <!-- <a href="#"><i class="fa fa-dribbble"></i></a> 

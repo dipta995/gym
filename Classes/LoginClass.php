@@ -352,7 +352,7 @@ class LoginClass extends DB
             $result = $this->conn->query($qry);
            return  mysqli_fetch_array($result);
     }
-    public function userLogin($email,$password, $link){
+    public function userLogin($email,$password){
         $qry = "SELECT * FROM user_table WHERE email='$email' AND password='$password' and flag=0";
         $result = $this->conn->query($qry);
         $value = mysqli_fetch_array($result);
@@ -362,11 +362,7 @@ class LoginClass extends DB
             $_SESSION['user_id'] = $value['user_id'];
             $_SESSION['email'] = $value['email'];
             $_SESSION['mobile'] = $value['mobile'];
-                if (empty($link)|| $link==NULL) {
                 header('Location: index.php');
-                }else{
-                    echo "<script> window.location = '$link';</script>";
-                }
             }
         else{
             return $txt = "<div style='color:red; font-size: 15px;'>Incorrect email and password...!</div>";;

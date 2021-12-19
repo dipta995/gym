@@ -10,7 +10,7 @@ $login = new LoginClass();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $logincheck = $login->userLogin($email,$password, $link);
+    $logincheck = $login->userLogin($email,$password);
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
   $createUser = $create->insertUser($_POST,$_FILES);
