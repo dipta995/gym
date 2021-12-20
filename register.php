@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
                         placeholder="Enter Email Address">
                     </div>
                     <div class="form-group">
-                      <label>Password</label>
+                      <label>Password </label>
                       <input name="password" type="password" class="form-control" id="exampleInputPassword" placeholder="Enter Password">
                     </div>
                     <div class="form-group">
