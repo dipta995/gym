@@ -36,7 +36,7 @@ if(isset($_GET['delemp'])){
                 <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
-                        <th>#</th>
+                        <th>ID</th>
                         <th>Employee Name</th>
                         <th>Ratting</th>
                         <th>Email</th>
@@ -57,7 +57,7 @@ if(isset($_GET['delemp'])){
                         foreach($view as $value){
                     ?>
                     <tr>
-                        <td><?php echo $i+=1; ?></td>
+                        <td><?php echo $value['emp_id']; ?></td>
                         <td><?php echo $value['emp_name']; ?></td>
                         <td><?php 
                

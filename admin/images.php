@@ -56,6 +56,7 @@ if(isset($_GET['imageid'])){
                         <td><img style="height: 60px; width: 60px;" src="<?php echo $value['image_link']; ?>" alt=""> </td>
                   
                         <td>
+                            <a href="up_image.php?imageid=<?php echo $value['image_id'] ;?>" class="btn btn-sm btn-info">Update</a>
  
                             <a href="?imageid=<?php echo $value['image_id'] ;?>" class="btn btn-sm btn-danger">Delete</a>
                         </td>

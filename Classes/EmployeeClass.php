@@ -225,6 +225,75 @@ class EmployeeClass extends DB
                 }
                 
         }
+
+
+        public function updateImage($data,$file,$id)
+        {
+            $caption = mysqli_real_escape_string($this->conn, $data['caption']);
+            $caption_two = mysqli_real_escape_string($this->conn, $data['caption_two']);
+            $brif = mysqli_real_escape_string($this->conn, $data['brif']);
+     
+           
+         
+            $permited  = array('jpg', 'jpeg', 'png', 'gif');
+            $file_name = $file['image']['name'];
+            $file_size = $file['image']['size'];
+            $file_temp = $file['image']['tmp_name'];
+
+            $div            = explode('.', $file_name);
+            $file_ext       = strtolower(end($div));
+            $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
+            $uploaded_image = "img/".$unique_image;
+            $move_image = "img/".$unique_image;
+           
+    
+            if (empty($caption) || empty($caption_two) || empty($brif)) {
+                    $txt = "<div class='alert alert-danger'>Field must not be empty</div>";
+                    return $txt;
+            }elseif (!preg_match ("/^[a-zA-z ]*$/", $caption) ){
+                $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For Caption one</span>";
+                return $txt;
+            }
+            elseif (!preg_match ("/^[a-zA-z ]*$/", $caption_two) ){
+                $txt = "<span style='color:red; font-size: 15px;'>Only alphabets and whitespace are allowed For caption_two</span>";
+                return $txt;
+            }
+              
+            
+            elseif(empty($file_ext)){
+                   
+                $qry = "UPDATE image_table 
+                SET
+                caption               = '$caption',
+                caption_two         = '$caption_two', 
+                brif              = '$brif'
+                WHERE image_id        = '$id'";
+                $result = $this->conn->query($qry);
+                if($result){
+                    
+                    return "<script>window.location='images.php';</script>";
+                }
+               }else{
+                  
+               
+                    $qry = "UPDATE image_table 
+                    SET
+                    caption               = '$caption',
+                    caption_two         = '$caption_two', 
+                    brif              = '$brif',
+                    image_link             = '$uploaded_image'
+                    WHERE image_id        = '$id'";
+                    $result = $this->conn->query($qry);
+                    
+                    
+                    if($result){
+                        move_uploaded_file($file_temp, $move_image);
+                        return "<script>window.location='images.php';</script>";
+                    }
+                }
+                
+        }
+        
         
 
         public function viewEmployee()
@@ -236,6 +305,12 @@ class EmployeeClass extends DB
         public function viewEmployeebyid($id)
         {
             $qry = "SELECT * FROM employee_table where emp_id=$id ";
+            $result = $this->conn->query($qry);
+            return $result;
+        }
+        public function viewImageid($id)
+        {
+            $qry = "SELECT * FROM image_table where image_id=$id ";
             $result = $this->conn->query($qry);
             return $result;
         }

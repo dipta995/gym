@@ -40,7 +40,7 @@ s0.parentNode.insertBefore(s1,s0);
         <div class="portfolio-modal modal fade" id="portfolioModals<?php echo $val; ?>" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="admin/<?php echo $imgval['image_link']; ?>" alt="Close modal" /></div>
+                    <div class="close-modal" data-bs-dismiss="modal"></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">

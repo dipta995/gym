@@ -15,13 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
   	<h4 class="text-center">Package</h4>
     <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-6">
             <?php 
                 if(isset($addPack)){
                     echo $addPack;
                 }
                 $viewpack = $pack->ShowSelectedpack($package_id);
-                foreach($viewpack as $value){
+                 $value = mysqli_fetch_array($viewpack);
+                
             ?>
             <form method="POST">
                 <input type="hidden" value="<?php echo $_SESSION['user_id']; ?>">
@@ -49,12 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
              <option value="" disabled >Choose</option>
                <?php
                $data = $emp->trainer();
-               foreach ($data as $key => $value) {
+               foreach ($data as $key => $values) {
              
                ?> 
                
-               <option value="<?php echo $value['emp_id'];?>"><?php
-                echo $value['emp_name']; 
+               <option value="<?php echo $values['emp_id'];?>"><?php
+                echo $values['emp_name']; 
                ?>
             
             
@@ -69,8 +70,14 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
                       <button style="float:left;" type="submit" class="btn btn-primary btn-block">Confirm</button>
                     </div>
                
-                <?php } ?>
+                 
             </form>
+        </div>
+        <div class="col-md-4">
+            <div style="border: 1px solid black; border-radius: 5px;margin-top: 30px;">
+                <h4 style="text-align: center;margin-top: 5px;">Package Details</h4>
+            <p style="margin: 10px;"><?php echo $value['details'];?></p>
+            </div>
         </div>
     </div>  
 <style>

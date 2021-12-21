@@ -40,14 +40,17 @@
             </div>
         </header>
         <!-- Package-->
+        <br>
+
+    <h3 style="text-align:center;">Our Packages</h3>
 					<?php
                     $viewpack = $pack->viewPackage();
                     foreach($viewpack as $value){
                 ?>
-<div class="columns">
+<div id="services" class="columns">
   <ul class="price">
     <li class="header"><?php echo $value['pack_name'];?></li>
-    <li class="grey"><?php echo $value['price'];?>(tk / <?php echo $value['month'];?> Months</li>
+    <li class="grey"><?php echo $value['price'];?> tk / <?php echo $value['month'];?> Months</li>
     <li><?php echo $value['discount'];?>(%)</li>
     
     <li><?php echo $value['details'];?></li>
@@ -56,6 +59,7 @@
   
 </div>
  <?php } ?>
+ <br>
  <br>
        <style>
 * {
