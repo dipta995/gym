@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2021 at 10:44 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Aug 22, 2022 at 10:43 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -159,6 +159,31 @@ CREATE TABLE `package_table` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product_table`
+--
+
+CREATE TABLE `product_table` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `buying_price` int(11) NOT NULL,
+  `selling_price` int(11) NOT NULL,
+  `discount` int(11) NOT NULL,
+  `soft_delete` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_table`
+--
+
+INSERT INTO `product_table` (`id`, `name`, `description`, `image`, `buying_price`, `selling_price`, `discount`, `soft_delete`) VALUES
+(1, 'Wang Mcdonald', 'Sequi cupidatat dolo', 'upload/5c6262ef64.jpg', 734, 904, 5, 1),
+(2, 'Cadman Bolton', 'Magnam occaecat moll', 'upload/02775640a0.jpg', 705, 599, 5, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `salary_table`
 --
 
@@ -254,6 +279,12 @@ ALTER TABLE `package_table`
   ADD PRIMARY KEY (`package_id`);
 
 --
+-- Indexes for table `product_table`
+--
+ALTER TABLE `product_table`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `salary_table`
 --
 ALTER TABLE `salary_table`
@@ -316,6 +347,12 @@ ALTER TABLE `order_table`
 --
 ALTER TABLE `package_table`
   MODIFY `package_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `product_table`
+--
+ALTER TABLE `product_table`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `salary_table`
