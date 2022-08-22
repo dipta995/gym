@@ -10,16 +10,18 @@ session_start();
     header("Location:login.php");
   }
 
-  include '../Classes/PacageClass.php';
-  $pack = new PacageClass();
-  include '../Classes/FoodClass.php';
-$food = new FoodClass();
+include '../Classes/PackageClass.php';
+$pack = new PackageClass();
+include '../Classes/ProductClass.php';
+$product = new ProductClass();
 include '../Classes/EmployeeClass.php';
 $emp = new EmployeeClass();
 include '../Classes/ContactClass.php';
 $cont = new ContactClass();
 include '../Classes/LoginClass.php';
 $create = new LoginClass();
+include '../Classes/FormatClass.php';
+$fm = new Format();
 $status = $_SESSION['admin_status'];
 $adminid = $_SESSION['admin_id'];
 ?>
@@ -79,6 +81,21 @@ $adminid = $_SESSION['admin_id'];
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm1" aria-expanded="true"
+          aria-controls="collapseForm">
+          <i class="fab fa-fw fa-wpforms"></i>
+          <span>Products</span>
+        </a>
+        <div id="collapseForm1" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Products</h6>
+            <?php if ($status==0) { ?>
+            <a class="collapse-item" href="createproduct.php">Create Product</a> <?php } ?>
+            <a class="collapse-item" href="product.php">All Products</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="order.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Orders</span>
@@ -88,13 +105,6 @@ $adminid = $_SESSION['admin_id'];
         <a class="nav-link" href="users.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Users</span>
-        </a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-link" href="food.php">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Food Menu</span>
         </a>
       </li>
       <li class="nav-item">

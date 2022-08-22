@@ -1,14 +1,12 @@
 <?php
 session_start();
-include 'Classes/PacageClass.php';
+include 'Classes/PackageClass.php';
 include 'Classes/LoginClass.php';
-include 'Classes/FoodClass.php';
 include 'Classes/EmployeeClass.php';
 include 'Classes/ContactClass.php';
 $cont = new ContactClass();
-$pack = new PacageClass();
+$pack = new PackageClass();
 $login = new LoginClass();
-$food = new FoodClass();
 $emp = new EmployeeClass();
  
 
