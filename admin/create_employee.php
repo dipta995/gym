@@ -33,28 +33,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <input name="emp_name" type="text" class="form-control" >
             </div>
 
-
             <div class="form-group">
               <label>Email</label>
               <input name="emp_email" type="email" class="form-control" placeholder="Enter email" >
             </div>
             <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">+8801</span>
-                      </div>
-                      <input type="number" min=0 class="form-control" placeholder="" name="emp_phone" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">+8801</span>
+              </div>
+              <input type="number" min=0 class="form-control" placeholder="" name="emp_phone" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
             <div class="form-group">
               <label>Job Status</label>
                 <select name="emp_job_status" class="form-control">
-                    <option value="Instructtor">Instructtor</option>
+                    <option value="Instructtor">Instructor</option>
                     <option value="Manager">Manager</option>
                     <option value="Cleaner">Cleaner</option>
                 </select>
             </div>
             <div class="form-group">
               <label>Salary</label>
-              <input name="emp_salary" type="text" class="form-control" placeholder="Enter Salary">
+              <input name="emp_salary" type="number" class="form-control" placeholder="Enter Salary">
             </div>
             <div class="form-group">
               <label>Image [jpg,jpeg,png,gif]</label>
@@ -63,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
               <label>Address</label>
               <textarea class="ckeditor form-control"  name="emp_address" cols="" rows="3"></textarea>
-              <!-- <textarea name="details" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Package Description"></textarea> -->
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

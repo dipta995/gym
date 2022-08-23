@@ -1,8 +1,5 @@
 <?php 
 include_once 'db.php';
-
- 
-
  
 class LoginClass extends DB
 {
@@ -17,7 +14,7 @@ class LoginClass extends DB
         $id = $_SESSION['user_id'];
         $que = "SELECT * FROM user_table WHERE user_id = $id";
         $result = $this->conn->query($que);
-            return $result;
+        return $result;
     }
     
     public function adminlogin($email, $pass){
@@ -26,7 +23,7 @@ class LoginClass extends DB
         
             if (mysqli_num_rows($result)>0) {
                 session_start();
-                 $_SESSION['loginauth'] = 'admin';
+                $_SESSION['loginauth'] = 'admin';
                 $_SESSION['admin_id'] = $value['admin_id'];
                 $_SESSION['admin_email'] = $value['admin_email'];
                 $_SESSION['admin_status'] = $value['admin_status'];

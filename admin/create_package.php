@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <input name="month" type="number" class="form-control" placeholder="Enter month" min="3">
             </div>
             <div class="form-group">
-              <label>Price (tk)</label>
+              <label>Price (BDT)</label>
               <input name="price" type="number" class="form-control" placeholder="Enter price" min="0">
             </div>
             <div class="form-group">

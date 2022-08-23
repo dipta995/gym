@@ -1,8 +1,8 @@
 <?php
-include 'Classes/IdcartClass.php';
-$idcart = new IdcartClass();
+include 'Classes/idcardClass.php';
+$idcard = new idcardClass();
  $orderid = $_GET['orderid'];
-$value=$idcart->generateidcart($orderid);
+$value=$idcard->generateidcard($orderid);
  
    $name = "NAME :". $value['first_name']." ". $value['last_name']   ;
     $email = "EMAIL :". $value['email'];
@@ -10,7 +10,7 @@ $value=$idcart->generateidcart($orderid);
     $gender = $value['gender'];
     $mob = "MOBILE NO :".$value['mobile'];
     $address = "ADDRESS :".$value['address'];
-    $image = "admin/".$value['image'];
+    $image = $value['image'];
     $start =  $value['created_at'];
      $exp=  date('Y-m-d', strtotime("+".$value['month']." months", strtotime($value['created_at'])));
      $daterange = "PACKAGE LENGTH :".$start. " To ".$exp;
@@ -48,8 +48,6 @@ $pdf->SetXY(370,350);
 $pdf->Cell(50,10,$address,"A",0,'C',0); 
 
 
-
-
 $pdf->SetFont('Arial','B',16); 
 $pdf->SetXY(480,400); 
 $signataire = ""; 
@@ -57,9 +55,6 @@ $pdf->Cell(150,19,$signataire,"B",0,'C');
 $pdf->SetXY(480,420); 
 
 $pdf->Cell(150,19,'Signature',"A",0,'C',0); 
-
-
-
 
 $pdf->Output();
 ?>

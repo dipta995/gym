@@ -34,6 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
 
 </head>
 
+    <!-- Home -->
+
+    <div class="home">
+		<div class="background_image" style="background-image:url(images/blog_4.jpg)"></div>
+		<div class="overlay"></div>
+		<div class="home_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 <body class="bg-gradient-login">
   <!-- Register Content -->
   <div class="container-login">
@@ -89,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
                     </div>
                     <div class="form-group">
                       <label>Parmanent Address</label>
-                      <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Address"></textarea>
+                      <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Your Address"></textarea>
                     </div>
                     <div class="form-group">
                       <label>Image[jpg,jpeg,png,gif]</label>
@@ -107,17 +124,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
                 <div class="login-form">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Already have an account?</h1> 
+                  </div>
+                  <div>
                     <form method="POST" action="">
                         <?php if (isset($logincheck)) {
                               echo $logincheck;
                         } ?>
                         <div class="form-group">
-                          <label for="inputEmail4">Email</label>
-                          <input type="text" name="email" class="form-control" id="inputEmail4" placeholder="Email">
+                          <label for="inputEmail4">Email Address</label>
+                          <input type="text" name="email" class="form-control" id="inputEmail4" placeholder="Enter Email">
                         </div>
                         <div class="form-group">
                           <label for="inputPassword4">Password</label>
-                          <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
+                          <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Enter Password">
                         </div>
                         <div style="padding: 20px;">
                           <button name="user" type="submit" class="btn btn-success">Log in</button>

@@ -101,7 +101,7 @@ class PackageClass extends DB
             $qry = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,trainer_id)VALUES('$mobile','$package_id','$pack_price','$pack_month','$pack_discount','$trainer')";
             $result = $this->conn->query($qry);
             if($result){
-                $txt = "<div class='alert alert-success'>Order Successfully</div>";
+                $txt = "<div class='alert alert-success'>Order Successful!</div>";
                 return $txt;
             }
         }
@@ -157,9 +157,9 @@ class PackageClass extends DB
         $qry = "DELETE  FROM order_table WHERE mobile_no=$mobile AND order_id = $order";
         $result = $this->conn->query($qry);
         if ($result) {
-            return "<span style='color:green'>Order Cancelled </span>";
+            return "<span style='color:green'>Order Cancelled!</span>";
         }else{
-            return "<span style='color:green'>Something Wrong</span>";
+            return "<span style='color:green'>Something went wrong</span>";
         }
     }
 
@@ -169,7 +169,7 @@ class PackageClass extends DB
         $que = $this->conn->query("SELECT * FROM order_table WHERE pack_id=$packid AND status=0 AND mobile_no=$mobile_no");
         $value = mysqli_fetch_array($que);
         if (mysqli_num_rows($que)>0) {
-            $txt = "<div class='alert alert-danger'>Already added</div>";
+            $txt = "<div class='alert alert-danger'>Already added!</div>";
             return $txt;
         }else{
             $que = $this->conn->query("SELECT * FROM package_table WHERE package_id=$packid");
@@ -180,7 +180,7 @@ class PackageClass extends DB
             $qry = "INSERT INTO order_table(mobile_no,pack_id,pack_price,pack_month,pack_discount,trainer_id,status)VALUES('$mobile_no','$packid','$pack_price','$pack_month','$pack_discount','$trainer','1')";
             $result = $this->conn->query($qry);
             if($result){
-                $txt = "<div class='alert alert-success'>Order Successfully</div>";
+                $txt = "<div class='alert alert-success'>Order Successful!</div>";
                 return $txt;
             }
         }
