@@ -6,11 +6,10 @@
  }
  
  $view = $emp->viewEmployeebyid($empid);
- 
-     $value = mysqli_fetch_array($view);
+ $value = mysqli_fetch_array($view);
  
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $createPackage = $emp->updateEmployee($_POST,$_FILES);
+    $updateEmployee = $emp->updateEmployee($_POST,$_FILES);
 }
 ?>
 <!-- Container Fluid-->
@@ -32,9 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
           <h6 class="m-0 font-weight-bold text-primary">Update Employee</h6>
         </div>
-        <?php if (isset($createPackage)){
-                    echo $createPackage;
-        }  ?>
+        <?php 
+        if (isset($updateEmployee)){
+          echo $updateEmployee;
+        }
+        ?>
         <div class="card-body" >
           <form method="POST" enctype="multipart/form-data">
             <div class="form-group">

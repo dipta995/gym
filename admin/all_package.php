@@ -36,9 +36,10 @@ if(isset($_GET['delPackage'])){
                 <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
-                        <th>#</th>
+                        <th>SL</th>
                         <th>Package Name</th>
                         <th>Details</th>
+                        <th>Icon</th>
                         <th>Month</th>
                         <th>Price</th>
                         <th>Discount <br></th>
@@ -57,6 +58,7 @@ if(isset($_GET['delPackage'])){
                         <td><?php echo $i+=1; ?></td>
                         <td><?php echo $value['pack_name']; ?></td>
                         <td><?php echo $value['details']; ?></td>
+                        <td><img style="height: 60px; width: 60px;" src="<?php echo $value['image']; ?>" alt=""> </td>   
                         <td><?php echo $value['month']; ?></td>              
                         <td><?php echo $value['price']; ?> BDT</td>
                         <td><?php echo $value['discount']; ?>% <br> <?php echo $value['price']-(($value['price']*$value['discount'])/100) ?>  Taka</td>

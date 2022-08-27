@@ -1,26 +1,27 @@
-<?php include 'layouts/header.php';
- 
+<?php
+include 'layouts/header.php';
+include 'layouts/nav.php';
+
 $create = new LoginClass();
-if(isset($_GET['link'])){
+if (isset($_GET['link'])) {
   $link = $_GET['link'];
-}else{
+} else {
   $link = 'index.php';
 }
 $login = new LoginClass();
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $logincheck = $login->userLogin($email,$password);
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'])) {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $logincheck = $login->userLogin($email, $password);
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
-  $createUser = $create->insertUser($_POST,$_FILES);
+  $createUser = $create->insertUser($_POST, $_FILES);
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,26 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
-
 </head>
 
-    <!-- Home -->
+<br><br><br>
 
-    <div class="home">
-		<div class="background_image" style="background-image:url(images/blog_4.jpg)"></div>
-		<div class="overlay"></div>
-		<div class="home_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="home_content">
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 <body class="bg-gradient-login">
   <!-- Register Content -->
   <div class="container-login">
@@ -65,82 +50,88 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
                     <h1 class="h4 text-gray-900 mb-4">Create Account</h1>
                   </div>
                   <?php
-                    if(isset($createUser)){
-                      echo $createUser;
-                      
-                    }
+                  if (isset($createUser)) {
+                    echo $createUser;
+                  }
                   ?>
                   <form method="POST" action="" enctype="multipart/form-data">
                     <div class="form-group">
                       <label>First Name</label>
                       <input name="first_name" type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter First Name">
                     </div>
+
                     <div class="form-group">
                       <label>Last Name</label>
                       <input name="last_name" type="text" class="form-control" id="exampleInputLastName" placeholder="Enter Last Name">
                     </div>
+
                     <div class="form-group">
                       <label>Email</label>
-                      <input name="email" type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Enter Email Address">
+                      <input name="email" type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address">
                     </div>
+
                     <div class="form-group">
                       <label>Password </label>
                       <input name="password" type="password" class="form-control" id="exampleInputPassword" placeholder="Enter Password">
                     </div>
+
                     <div class="form-group">
-                      <label>DOB</label>
+                      <label>Date of Birth</label>
                       <input name="dob" max="<?php echo date('Y-m-d'); ?>" type="date" class="form-control" id="exampleInputPassword">
                     </div>
+
                     <div class="form-group">
                       <label>Gender</label>
-                      <input type="radio" checked name="gender" value="male">Male
-                      <input type="radio" name="gender" value="female">Female
+                      <input type="radio" checked name="gender" value="Male">Male
+                      <input type="radio" name="gender" value="Female">Female
                     </div>
-                    
+
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">+8801</span>
                       </div>
                       <input type="number" min=0 class="form-control" placeholder="" name="mobile" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
+
                     <div class="form-group">
                       <label>Parmanent Address</label>
                       <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Your Address"></textarea>
                     </div>
+
                     <div class="form-group">
                       <label>Image[jpg,jpeg,png,gif]</label>
-                      <input name="image" type="file" class="form-control" id="exampleInputPassword" >
+                      <input name="image" type="file" class="form-control" id="exampleInputPassword">
                     </div>
+
                     <div class="form-group">
                       <button type="submit" name="create" class="btn btn-primary btn-block">Register</button>
                     </div>
                     <hr>
                   </form>
-               
                 </div>
               </div>
+
               <div class="col-lg-6">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Already have an account?</h1> 
+                    <h1 class="h4 text-gray-900 mb-4">Already have an account?</h1>
                   </div>
                   <div>
                     <form method="POST" action="">
-                        <?php if (isset($logincheck)) {
-                              echo $logincheck;
-                        } ?>
-                        <div class="form-group">
-                          <label for="inputEmail4">Email Address</label>
-                          <input type="text" name="email" class="form-control" id="inputEmail4" placeholder="Enter Email">
-                        </div>
-                        <div class="form-group">
-                          <label for="inputPassword4">Password</label>
-                          <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Enter Password">
-                        </div>
-                        <div style="padding: 20px;">
-                          <button name="user" type="submit" class="btn btn-success">Log in</button>
-                        </div>
+                      <?php if (isset($logincheck)) {
+                        echo $logincheck;
+                      } ?>
+                      <div class="form-group">
+                        <label for="inputEmail4">Email Address</label>
+                        <input type="text" name="email" class="form-control" id="inputEmail4" placeholder="Enter Email">
+                      </div>
+                      <div class="form-group">
+                        <label for="inputPassword4">Password</label>
+                        <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Enter Password">
+                      </div>
+                      <div style="padding: 20px;">
+                        <button name="user_id" type="submit" class="btn btn-success">Log in</button>
+                      </div>
                     </form>
                   </div>
                 </div>
@@ -152,6 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
     </div>
   </div>
   <!-- Register Content -->
+
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -159,4 +151,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create'])) {
 </body>
 
 </html>
-<?php include 'layouts/footer.php';?>
+<?php include 'layouts/footer.php'; ?>

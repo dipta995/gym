@@ -2,9 +2,8 @@
 session_start();
   if ($_SESSION['loginauth']!='admin') {
     header("Location:login.php");
-    }else{
-       
-    }
+  }
+  
   if (isset($_GET['logout'])=='action') {
     session_destroy();
     header("Location:login.php");
@@ -96,10 +95,19 @@ $adminid = $_SESSION['admin_id'];
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="order.php">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm2" aria-expanded="true"
+          aria-controls="collapseForm">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Orders</span>
         </a>
+        <div id="collapseForm2" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Orders</h6>
+            <?php if ($status==0) { ?>
+            <a class="collapse-item" href="order.php">Packages</a> <?php } ?>
+            <a class="collapse-item" href="product_order.php">Products</a>
+          </div>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="users.php">

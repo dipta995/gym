@@ -10,7 +10,7 @@
 3. Header
 4. Menu
 5. Home
-6. About
+6. Profile
 7. Team
 8. Footer
 
@@ -647,16 +647,16 @@ section
 }
 
 /*********************************
-6. About
+6. Profile
 *********************************/
 
-.about
+.profile
 {
 	padding-top: 69px;
 	padding-bottom: 192px;
 	background: #FFFFFF;
 }
-.about_container
+.profile_container
 {
 	z-index: 2;
 }
@@ -664,7 +664,7 @@ section
 {
 	
 } */
-.about_background
+.profile_background
 {
 	position: absolute;
 	bottom: 0;
@@ -680,7 +680,7 @@ section
 	background: #FFFFFF;
 	z-index: 1;
 }
-.about_background::before
+.profile_background::before
 {
 	position: absolute;
 	top: 0;
@@ -690,7 +690,7 @@ section
 	background: #FFFFFF;
 	content: '';
 }
-.about_overlay
+.profile_overlay
 {
 	position: absolute;
 	bottom: 0;
@@ -715,22 +715,22 @@ section
 	line-height: 1.75;
 	margin-top: 35px;
 }
-.about_text
+.profile_text
 {
 	margin-top: 28px;
 }
-.about_button
+.profile_button
 {
 	margin-top: 50px;
 }
-.about_image
+.profile_image
 {
 	position: absolute;
 	right: -20px;
 	bottom: 20px;
 	max-width: 75%;
 }
-.about_image img
+.profile_image img
 {
 	max-width: 100%;
 }

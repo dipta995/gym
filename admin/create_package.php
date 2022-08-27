@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo $createPackage;
         }  ?>
         <div class="card-body">
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
               <label>Package Name</label>
               <input name="pack_name" type="text" class="form-control" placeholder="Enter package">
@@ -35,7 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
               <label>Details</label>
               <textarea class="ckeditor form-control" id="myEditor" name="details" cols="" rows="3"></textarea>
-              <!-- <textarea name="details" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Package Description"></textarea> -->
+            </div>
+            <div class="form-group">
+              <label>Icon</label>
+              <input name="image" type="file" class="form-control">
             </div>
             <div class="form-group">
               <label>Month</label>

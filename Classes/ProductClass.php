@@ -61,6 +61,13 @@ class ProductClass extends DB
         return $result;
     }
 
+    // Show Selected Package
+    public function ShowSelectedproduct($product_id){
+        $qry = "SELECT * FROM product_table WHERE id='$product_id' AND soft_delete=0";
+        $result = $this->conn->query($qry);
+        return $result;
+    }
+
     // Update Product
     public function updateProduct($data, $productid){
         $name          = mysqli_real_escape_string($this->conn, $data['name']);
@@ -136,6 +143,60 @@ class ProductClass extends DB
             $txt = "<div class='alert alert-success'>Successfully Deleted!</div>";
             return $txt;
         }
+    }
+
+    // View Order From Admin Panel
+    public function viewOrderadmin(){       
+        $qry = "SELECT * FROM order_table 
+        INNER JOIN product_table ON order_table.product_id = product_table.id 
+        INNER JOIN user_table ON order_table.mobile_no = user_table.mobile  
+        ORDER by status ASC";
+        $result = $this->conn->query($qry);
+        return $result;
+    }
+
+    // Buy Product
+    public function buyProduct($data,$product_id,$mobile){
+        $product_price = mysqli_real_escape_string($this->conn, $data['product_price']);
+        $product_discount = mysqli_real_escape_string($this->conn, $data['product_discount']);
+
+        $que = $this->conn->query("SELECT * FROM order_table WHERE product_id=$product_id AND status=0 AND mobile_no=$mobile");
+        $value = mysqli_fetch_array($que);
+        if ($value > 0) {
+            $txt = "<div class='alert alert-danger'>Already added!</div>";
+            return $txt;
+        }else{
+            $qry = "INSERT INTO order_table(mobile_no,product_id,product_price,product_discount)VALUES('$mobile','$product_id','$product_price','$product_discount')";
+            $result = $this->conn->query($qry);
+            if($result){
+                $txt = "<div class='alert alert-success'>Order Successful!</div>";
+                return $txt;
+            }
+        }
+    }
+
+     // Confirm Order
+     public function confirmorder($order){
+        $qry = "UPDATE order_table
+                SET
+                status               = '1' 
+                WHERE order_id        = '$order'";
+                $result = $this->conn->query($qry);
+        if($result){
+            $txt = "<div class='alert alert-success'>Order Confirmed!</div>";
+            return $txt;
+        }
+    }
+
+       // View Order
+       public function viewOrder(){
+        $mobile = $_SESSION['mobile'];
+        $qry = "SELECT * FROM order_table 
+        INNER JOIN user_table ON order_table.mobile_no = user_table.mobile 
+        INNER JOIN product_table ON order_table.product_id = product_table.id 
+        where order_table.mobile_no = '$mobile'";
+        $result = $this->conn->query($qry);
+        return $result;
     }
 
 }

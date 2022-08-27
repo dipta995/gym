@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
         ?>
         <div class="card-body">
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data">
             <?php 
                 $view = $pack->viewSinglePackage($packageid);
                 if($view){
@@ -49,6 +49,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
               <label>Details</label>
               <textarea name="details" class="form-control" id="exampleFormControlTextarea1" rows="3"><?php echo $value['details'];?></textarea>
             </div>
+
+            <div class="form-group">
+              <label>Upload Icon</label>
+              <br>
+              <td>
+                <img src="<?php echo $value['image'];?>" height="100px" width="100px"/></br>
+                <input type="file" name="image" class="form-control" placeholder="Enter logo" min="0" />
+              </td>
+            </div>
+
             <div class="form-group">
               <label>Month</label>
               <select name="month" class="form-control" id="exampleFormControlSelect1">
