@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<?php
 						$data = $emp->trainer();
 						foreach ($data as $key => $values) {
-
 						?>
 							<option value="<?php echo $values['emp_id']; ?>">
 								<?php

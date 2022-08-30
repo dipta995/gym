@@ -1,13 +1,13 @@
-<?php 
-    include "../Classes/LoginClass.php";
- 
-    $login = new LoginClass();
-  
-    if ($_SERVER['REQUEST_METHOD']=='POST') {
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-        $logincheck = $login->adminlogin($email,$pass);
-    }          	
+<?php
+include "../Classes/LoginClass.php";
+
+$login = new LoginClass();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $email = $_POST['email'];
+  $pass = $_POST['pass'];
+  $logincheck = $login->adminlogin($email, $pass);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +45,7 @@
                   } ?>
                   <form class="user" method="POST">
                     <div class="form-group">
-                      <input name="email" type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Enter Email Address">
+                      <input name="email" type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address">
                     </div>
                     <div class="form-group">
                       <input name="pass" type="password" class="form-control" id="exampleInputPassword" placeholder="Password">

@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 foreach ($data as $key => $values) {
 
                 ?>
-                  <option value="<?php echo $values['mobile']; ?>"><?php echo $values['first_name']. ' ' . $values['last_name'].' '. '(' . $values['mobile'] . ')'; ?></option>
+                  <option value="<?php echo $values['mobile']; ?>"><?php echo $values['first_name'] . ' ' . $values['last_name'] . ' ' . '(' . $values['mobile'] . ')'; ?></option>
                 <?php } ?>
               </select>
             </div>

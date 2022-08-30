@@ -16,7 +16,6 @@
 								<li><a href="about.php">About</a></li>
                                 <li><a href="packages.php">Packages</a></li>
                                 <li><a href="products.php">Products</a></li>
-								<li><a href="contact.php">Contact</a></li>
                                 <?php
                                 if(isset($_GET['logout']) && isset($_GET['logout']) == 'logout'){
                                     session_destroy();
@@ -62,7 +61,6 @@
 				<li><a href="about.php">About</a></li>
 				<li><a href="packages.php">Packages</a></li>
 				<li><a href="products.php">Products</a></li>
-				<li><a href="contact.html">Contact</a></li>
                 <?php
                 if(isset($_GET['logout']) && isset($_GET['logout']) == 'logout'){
                     session_destroy();

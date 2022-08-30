@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'layouts/header.php';
 ?>
 <!-- Container Fluid-->
@@ -33,14 +33,14 @@ include 'layouts/header.php';
                 <th>Action</th>
               </tr>
             </thead>
-           
+
             <tbody>
               <?php
               if (isset($_GET['confirm'])) {
                 echo $confirm = $product->confirmorder($_GET['confirm']);
               }
               $i = 0;
-              $view = $product->viewOrderadmin();
+              $view = $product->viewOrder();
               foreach ($view as $value) {
                 $i++;
               ?>
@@ -54,7 +54,7 @@ include 'layouts/header.php';
                   <td><?php echo $discount = ($value['discount'] / 100) * $value['selling_price']; ?> BDT</td>
                   <td>
                     <?php if ($value['status'] == 0) { ?>
-                      <a href="?confirm=<?php echo $value['order_id']; ?>" class="btn btn-sm btn-success">Sell</a>
+                      <a href="?confirm=<?php echo $value['order_id']; ?>" class="btn btn-sm btn-success">SELL</a>
                     <?php } else { ?>
                       <button class="btn btn-info btn-sm">SOLD</button>
                     <?php } ?>

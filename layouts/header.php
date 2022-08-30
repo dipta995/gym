@@ -5,6 +5,8 @@ include 'Classes/LoginClass.php';
 include 'Classes/EmployeeClass.php';
 include 'Classes/ContactClass.php';
 include 'Classes/ProductClass.php';
+include 'Classes/CartClass.php';
+$cart = new CartClass();
 $cont = new ContactClass();
 $pack = new PackageClass();
 $login = new LoginClass();

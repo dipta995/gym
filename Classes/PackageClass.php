@@ -186,7 +186,8 @@ class PackageClass extends DB
         $qry = "SELECT * FROM order_table 
         LEFT JOIN employee_table ON order_table.trainer_id = employee_table.emp_id 
         INNER JOIN package_table ON order_table.pack_id = package_table.package_id 
-        INNER JOIN user_table ON order_table.mobile_no = user_table.mobile  
+        INNER JOIN user_table ON order_table.mobile_no = user_table.mobile 
+        LEFT JOIN product_table ON order_table.product_id = product_table.id
         ORDER by status ASC";
         $result = $this->conn->query($qry);
         return $result;
@@ -210,16 +211,6 @@ class PackageClass extends DB
             return "<span style='color:green'>Order Cancelled!</span>";
         }else{
             return "<span style='color:green'>Something went wrong!</span>";
-        }
-    }
-
-    public function removeImg($id){     
-        $qry = "DELETE  FROM image_table WHERE image_id=$id";
-        $result = $this->conn->query($qry);
-        if ($result) {
-            return "<span style='color:green'>Image removed!</span>";
-        }else{
-            return "<span style='color:green'>Something went wrong! Try again!</span>";
         }
     }
 
@@ -257,5 +248,3 @@ class PackageClass extends DB
         }
     }
 }
-
-?>

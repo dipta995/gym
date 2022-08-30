@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="col-md-1"></div>
         <div class="col-md-6">
             <?php
-            if (isset($addPack)) {
-                echo $addPack;
+            if (isset($addProduct)) {
+                echo $addProduct;
             }
             $view = $product->ShowSelectedproduct($product_id);
             $value = mysqli_fetch_array($view);
@@ -31,18 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form method="POST">
                 <input type="hidden" value="<?php echo $_SESSION['user_id']; ?>">
                 <input type="hidden" value="<?php echo $value['id']; ?>">
-                <input type="hidden" readonly value="<?php echo $value['description']; ?>" class="form-control" />
+                <input type="hidden" readonly value="<?php echo $value['description']; ?>"/>
 
                 <div class="form-group">
                     <label>Product Name</label>
                     <input type="text" readonly value="<?php echo $value['name']; ?>" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Price <span style="color:red;">BDT</span></label>
+                    <label>Price</span></label>
                     <input name="selling_price" type="text" readonly value="<?php echo $value['selling_price']; ?>" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Discount <span style="color:red;">(%)</span></label>
+                    <label>Discount(%)</span></label>
                     <input name="discount" type="text" readonly value="<?php echo $value['discount']; ?>" class="form-control" />
                 </div>
 

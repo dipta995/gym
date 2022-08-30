@@ -1,7 +1,6 @@
 <?php 
 class DB 
 {
- 
     public $conn;
     public function connect(){
         // Create connection
@@ -15,5 +14,3 @@ class DB
         }
     }
 }
- 
-?>

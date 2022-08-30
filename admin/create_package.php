@@ -1,7 +1,7 @@
 <?php include 'layouts/header.php';
- 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $createPackage = $pack->insertPackage($_POST);
+  $createPackage = $pack->insertPackage($_POST);
 }
 ?>
 <!-- Container Fluid-->
@@ -16,43 +16,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </div>
 
   <div class="row">
-      <div class="col-lg-2"></div>
+    <div class="col-lg-2"></div>
     <div class="col-lg-8">
       <!-- Form Basic -->
       <div class="card mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
           <h6 class="m-0 font-weight-bold text-primary">Add New Package</h6>
         </div>
-        <?php if (isset($createPackage)){
-                    echo $createPackage;
-        }  ?>
+        <?php
+        if (isset($createPackage)) {
+          echo $createPackage;
+        }
+        ?>
         <div class="card-body">
           <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
               <label>Package Name</label>
               <input name="pack_name" type="text" class="form-control" placeholder="Enter package">
             </div>
+
             <div class="form-group">
               <label>Details</label>
               <textarea class="ckeditor form-control" id="myEditor" name="details" cols="" rows="3"></textarea>
             </div>
+
             <div class="form-group">
               <label>Icon</label>
               <input name="image" type="file" class="form-control">
             </div>
+
             <div class="form-group">
               <label>Month</label>
               <input name="month" type="number" class="form-control" placeholder="Enter month" min="3">
             </div>
+
             <div class="form-group">
               <label>Price (BDT)</label>
               <input name="price" type="number" class="form-control" placeholder="Enter price" min="0">
             </div>
+            
             <div class="form-group">
               <label>Discount (%)</label>
               <input name="discount" type="number" min="0" step="1" value="0" class="form-control" placeholder="Enter discount">
             </div>
-          
+
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
@@ -75,4 +82,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //]]>
 </script> -->
 <!---Container Fluid-->
-<?php include 'layouts/footer.php';?>
+<?php include 'layouts/footer.php'; ?>

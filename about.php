@@ -57,40 +57,21 @@ include 'layouts/nav.php';
 			</div>
 		</div>
 		<div class="row team_row">
-
-			<!-- Team Member -->
-			<div class="col-lg-4 team_col">
-				<div class="team_item">
-					<div class="team_image"><img src="images/team_1.jpg" alt=""></div>
-					<div class="team_panel d-flex flex-column align-items-center justify-content-center text-center">
-						<div class="team_name"><a href="#">Michael Smith</a></div>
-						<div class="team_title">personal trainer</div>
+			<?php
+			$view = $emp->viewEmployee();
+			foreach ($view as $value) {
+			?>
+				<!-- Team Member -->
+				<div class="col-lg-4 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="admin/<?php echo $value['emp_image']; ?>" alt=""></div>
+						<div class="team_panel d-flex flex-column align-items-center justify-content-center text-center">
+							<div class="team_name"><a href="#"><?php echo $value['emp_name']; ?></a></div>
+							<div class="team_title"><?php echo $value['emp_job_status']; ?></div>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<!-- Team Member -->
-			<div class="col-lg-4 team_col">
-				<div class="team_item">
-					<div class="team_image"><img src="images/team_2.jpg" alt=""></div>
-					<div class="team_panel d-flex flex-column align-items-center justify-content-center text-center">
-						<div class="team_name"><a href="#">Simone Parker</a></div>
-						<div class="team_title">personal trainer</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Team Member -->
-			<div class="col-lg-4 team_col">
-				<div class="team_item">
-					<div class="team_image"><img src="images/team_3.jpg" alt=""></div>
-					<div class="team_panel d-flex flex-column align-items-center justify-content-center text-center">
-						<div class="team_name"><a href="#">William James</a></div>
-						<div class="team_title">personal trainer</div>
-					</div>
-				</div>
-			</div>
-
+			<?php } ?>
 		</div>
 	</div>
 </div>

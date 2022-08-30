@@ -36,31 +36,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             ?>
           </div>
+
           <div class="form-group">
             <label>First Name</label>
             <input type="text" name="first_name" value="<?php echo $value['first_name']; ?>" class="form-control" />
           </div>
+
           <div class="form-group">
             <label>Last Name</label>
             <input type="text" name="last_name" value="<?php echo $value['last_name']; ?>" class="form-control" />
           </div>
-          <!-- <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" name="email"  value="<?php echo $value['email']; ?>" class="form-control" />
-                </div> -->
+       
           <div class="form-group">
             <label>Password</label>
             <input type="text" name="password" value="<?php echo $value['password']; ?>" class="form-control" />
           </div>
+     
           <div class="form-group">
-            <label>Mobile No</label>
+            <label>Parmanent Address</label>
+            <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Your Address"><?php echo $value['address']; ?></textarea>
           </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">+8801</span>
-            </div>
-            <input type="number" min=0 class="form-control" placeholder="" value="<?php echo substr($value['mobile'], 5); ?>" name="mobile" aria-describedby="basic-addon1">
-          </div>
+          
           <div class="form-group">
             <label>Image</label>
             <input type="file" name="image" class="form-control" />

@@ -37,12 +37,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label>Product Description</label>
                             <textarea name="description" class="form-control" id="exampleFormControlTextarea1" cols="" rows="3" placeholder="Product Description"></textarea>
                         </div>
-        
+
                         <div class="form-group">
                             <label>Upload Image</label>
                             <td>
                                 <input type="file" name="image" class="form-control" placeholder="Enter Image" min="0" />
                             </td>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input name="stock" type="number" class="form-control" placeholder="Product in Stock">
                         </div>
 
                         <div class="form-group">
@@ -59,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label>Discount</label>
                             <input name="discount" type="number" class="form-control" placeholder="Enter Discount">
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
