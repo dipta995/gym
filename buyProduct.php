@@ -9,7 +9,7 @@ if ($_SESSION['loginauth'] != 'user') {
     header("Location:login.php?lastlink=$link");
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $addProduct = $product->buyProduct($_POST, $_GET['product_id'], $_SESSION['mobile']);
+    $addProduct = $product->buyProduct($_GET['product_id'], $_SESSION['mobile']);
 }
 ?>
 <br>

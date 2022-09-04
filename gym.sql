@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2022 at 07:41 AM
+-- Generation Time: Sep 04, 2022 at 08:39 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -147,7 +147,9 @@ INSERT INTO `order_table` (`order_id`, `mobile_no`, `product_id`, `pack_id`, `pa
 (52, '+8801300813663', NULL, 14, 5000, '6', '5', 1, '2022-09-04', 7),
 (53, '+8801300813663', NULL, 15, 4000, '5', '5', 1, '2022-09-04', 8),
 (54, '+8801300813663', 4, NULL, NULL, NULL, NULL, 1, '2022-09-04', NULL),
-(55, '+8801300813663', 7, NULL, NULL, NULL, NULL, 1, '2022-09-04', NULL);
+(55, '+8801300813663', 7, NULL, NULL, NULL, NULL, 1, '2022-09-04', NULL),
+(56, '+8801300813663', 3, NULL, NULL, NULL, NULL, 0, '2022-09-04', NULL),
+(57, '+8801300813663', 2, NULL, NULL, NULL, NULL, 0, '2022-09-04', NULL);
 
 -- --------------------------------------------------------
 
@@ -191,6 +193,14 @@ CREATE TABLE `product_order` (
   `status` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `product_order`
+--
+
+INSERT INTO `product_order` (`order_id`, `cus_id`, `product_id`, `buying_price`, `selling_price`, `discount`, `quantity`, `status`) VALUES
+(36, 37, 4, 300, 470, 5, 2, 0),
+(37, 37, 3, 2000, 3500, 5, 2, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -215,8 +225,8 @@ CREATE TABLE `product_table` (
 
 INSERT INTO `product_table` (`id`, `name`, `description`, `image`, `stock`, `buying_price`, `selling_price`, `discount`, `soft_delete`) VALUES
 (2, 'Exercise ball', 'Anti-Burst Fitness Exercise Stevility yoga Gym Ball', 'upload/356b0e0d9f.jpg', '85', 1800, 2000, 15, 0),
-(3, 'Dumbbells', '5Kg Hex Dumbbell Pair', 'upload/f9f2425d67.jpg', '90', 2000, 3500, 5, 0),
-(4, 'Yoga Mat', '6Mm Gym Exercise Yoga Mat Latex And Pvc Free', 'upload/296ff346e8.jpg', '80', 300, 470, 5, 0),
+(3, 'Dumbbells', '5Kg Hex Dumbbell Pair', 'upload/f9f2425d67.jpg', '88', 2000, 3500, 5, 0),
+(4, 'Yoga Mat', '6Mm Gym Exercise Yoga Mat Latex And Pvc Free', 'upload/296ff346e8.jpg', '78', 300, 470, 5, 0),
 (7, 'L Key Dumbbells', 'Steel,Rubber Adjustable Dumbbells Pvc Dumbbell L Key, Weight: 25 Kg', 'upload/fe6c98fee2.jpg', '97', 700, 900, 5, 0);
 
 -- --------------------------------------------------------
@@ -357,7 +367,7 @@ ALTER TABLE `admin_table`
 -- AUTO_INCREMENT for table `cart_table`
 --
 ALTER TABLE `cart_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `check_table`
@@ -381,7 +391,7 @@ ALTER TABLE `employee_table`
 -- AUTO_INCREMENT for table `order_table`
 --
 ALTER TABLE `order_table`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `package_table`
@@ -393,7 +403,7 @@ ALTER TABLE `package_table`
 -- AUTO_INCREMENT for table `product_order`
 --
 ALTER TABLE `product_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `product_table`

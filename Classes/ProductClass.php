@@ -157,19 +157,27 @@ class ProductClass extends DB
         return $result;
     }
 
+    public function viewProductOrder()
+    {
+        $qry = "SELECT * FROM order_table 
+        INNER JOIN user_table ON order_table.mobile_no = user_table.mobile 
+        LEFT JOIN product_table ON order_table.product_id = product_table.id
+        where order_table.product_id IS NOT NULL ORDER by status ASC";
+        $result = $this->conn->query($qry);
+        return $result;
+    }
+
 
     // Buy Product
-    public function buyProduct($data,$product_id,$mobile){
-        $product_price = mysqli_real_escape_string($this->conn, $data['product_price']);
-        $product_discount = mysqli_real_escape_string($this->conn, $data['product_discount']);
-
-        $que = $this->conn->query("SELECT * FROM order_table WHERE product_id = $product_id AND status=0 AND mobile_no=$mobile");
+    public function buyProduct($product_id,$mobile){
+   
+        $que = $this->conn->query("SELECT * FROM order_table WHERE product_id = $product_id AND mobile_no=$mobile");
         $value = mysqli_fetch_array($que);
         if ($value > 0) {
             $txt = "<div class='alert alert-danger'>Already added!</div>";
             return $txt;
         }else{
-            $qry = "INSERT INTO order_table(mobile_no, product_id, product_price,product_discount)VALUES('$mobile','$product_id', '$product_price','$product_discount')";
+            $qry = "INSERT INTO order_table(mobile_no, product_id)VALUES('$mobile','$product_id')";
             $result = $this->conn->query($qry);
             if($result){
                 $txt = "<div class='alert alert-success'>Order Successful!</div>";

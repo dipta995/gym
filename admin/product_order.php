@@ -40,7 +40,7 @@ include 'layouts/header.php';
                 echo $confirm = $product->confirmorder($_GET['confirm']);
               }
               $i = 0;
-              $view = $product->viewOrder();
+              $view = $product->viewProductOrder();
               foreach ($view as $value) {
                 $i++;
               ?>
