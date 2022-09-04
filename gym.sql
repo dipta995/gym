@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2022 at 05:03 PM
+-- Generation Time: Sep 04, 2022 at 07:41 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -35,6 +35,7 @@ CREATE TABLE `admin_table` (
   `admin_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin_status` tinyint(4) NOT NULL,
+  `soft_delete` tinyint(4) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -42,9 +43,10 @@ CREATE TABLE `admin_table` (
 -- Dumping data for table `admin_table`
 --
 
-INSERT INTO `admin_table` (`admin_id`, `first_name`, `last_name`, `admin_email`, `admin_password`, `phone`, `admin_status`, `created_at`) VALUES
-(4, 'Supty', 'Ahmed', 'admin@gmail.com', 'Pa$$w0rd!', '+8801300813663', 0, '2021-10-08 02:00:10'),
-(7, 'Dipta', 'Dey', 'dipta@gmail.com', '123456', '+8801456787653', 1, '2022-08-22 15:53:56');
+INSERT INTO `admin_table` (`admin_id`, `first_name`, `last_name`, `admin_email`, `admin_password`, `phone`, `admin_status`, `soft_delete`, `created_at`) VALUES
+(4, 'Supty', 'Ahmed', 'admin@gmail.com', 'Pa$$w0rd!', '+8801300813663', 0, 0, '2021-10-08 02:00:10'),
+(7, 'Dipta', 'Dey', 'dipta@gmail.com', '123456', '+8801456787653', 1, 1, '2022-08-22 15:53:56'),
+(8, 'Aline', 'Berger', 'Aline@hotmail.com', 'Pa$$w0rd!', '+8801345876980', 1, 0, '2022-09-04 05:00:45');
 
 -- --------------------------------------------------------
 
@@ -127,27 +129,25 @@ INSERT INTO `employee_table` (`emp_id`, `emp_name`, `emp_job_status`, `emp_email
 CREATE TABLE `order_table` (
   `order_id` int(11) NOT NULL,
   `mobile_no` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `product_price` int(11) NOT NULL,
-  `product_discount` int(11) NOT NULL,
-  `pack_id` int(11) NOT NULL,
-  `pack_price` int(11) NOT NULL,
-  `pack_month` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pack_discount` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `pack_id` int(11) DEFAULT NULL,
+  `pack_price` int(11) DEFAULT NULL,
+  `pack_month` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pack_discount` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
   `created_at` date NOT NULL DEFAULT current_timestamp(),
-  `trainer_id` int(11) NOT NULL
+  `trainer_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `order_table`
 --
 
-INSERT INTO `order_table` (`order_id`, `mobile_no`, `product_id`, `product_price`, `product_discount`, `pack_id`, `pack_price`, `pack_month`, `pack_discount`, `status`, `created_at`, `trainer_id`) VALUES
-(48, '+8801300813663', 0, 0, 0, 14, 5000, '6', '5', 1, '2022-08-30', 0),
-(49, '+8801300813663', 3, 0, 0, 0, 0, '', '', 1, '2022-08-30', 0),
-(50, '+8801300813663', 4, 0, 0, 0, 0, '', '', 1, '2022-08-30', 0),
-(51, '+8801300813663', 2, 0, 0, 0, 0, '', '', 1, '2022-08-30', 0);
+INSERT INTO `order_table` (`order_id`, `mobile_no`, `product_id`, `pack_id`, `pack_price`, `pack_month`, `pack_discount`, `status`, `created_at`, `trainer_id`) VALUES
+(52, '+8801300813663', NULL, 14, 5000, '6', '5', 1, '2022-09-04', 7),
+(53, '+8801300813663', NULL, 15, 4000, '5', '5', 1, '2022-09-04', 8),
+(54, '+8801300813663', 4, NULL, NULL, NULL, NULL, 1, '2022-09-04', NULL),
+(55, '+8801300813663', 7, NULL, NULL, NULL, NULL, 1, '2022-09-04', NULL);
 
 -- --------------------------------------------------------
 
@@ -351,7 +351,7 @@ ALTER TABLE `user_table`
 -- AUTO_INCREMENT for table `admin_table`
 --
 ALTER TABLE `admin_table`
-  MODIFY `admin_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `admin_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cart_table`
@@ -381,7 +381,7 @@ ALTER TABLE `employee_table`
 -- AUTO_INCREMENT for table `order_table`
 --
 ALTER TABLE `order_table`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `package_table`

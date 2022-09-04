@@ -65,6 +65,22 @@ $adminid = $_SESSION['admin_id'];
       </div>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true" aria-controls="collapseTable">
+          <i class="fas fa-address-book"></i>
+          <span>Admin</span>
+        </a>
+        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Admin</h6>
+            <?php if ($status == 0) { ?>
+              <a class="collapse-item" href="createadmin.php">Admin Create</a> 
+            <?php } ?>
+            <a class="collapse-item" href="admins.php">Admin list</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="cart.php">
           <i class="fas fa-shopping-cart"></i>
           <span>Cart</span>
@@ -72,11 +88,11 @@ $adminid = $_SESSION['admin_id'];
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true" aria-controls="collapseTable">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable1" aria-expanded="true" aria-controls="collapseTable">
           <i class="fas fa-address-card"></i>
           <span>Employee</span>
         </a>
-        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+        <div id="collapseTable1" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Employee </h6>
             <?php if ($status == 0) { ?>

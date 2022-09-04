@@ -43,7 +43,7 @@ include 'layouts/nav.php';
 
                     .price {
                         list-style-type: none;
-                        border: 1px solid #eee;
+                        border: 1px solid #d9cbca;
                         margin: 0;
                         padding: 0;
                         -webkit-transition: 0.3s;
@@ -61,7 +61,7 @@ include 'layouts/nav.php';
                     }
 
                     .price li {
-                        border-bottom: 1px solid #eee;
+                        border-bottom: 1px solid #d9cbca;
                         padding: 20px;
                         text-align: center;
                         font-size: large;
@@ -73,7 +73,7 @@ include 'layouts/nav.php';
                     }
 
                     .button {
-                        background-color: #04AA6D;
+                        background-color: #241716;
                         border: none;
                         color: white;
                         padding: 10px 25px;

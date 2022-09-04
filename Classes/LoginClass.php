@@ -35,6 +35,111 @@ class LoginClass extends DB
         }
     }
 
+    //Admin Registration 
+    public function insertAdmin($data)
+    {
+        $first_name     = mysqli_real_escape_string($this->conn, $data['first_name']);
+        $last_name      = mysqli_real_escape_string($this->conn, $data['last_name']);
+        $admin_email    = mysqli_real_escape_string($this->conn, $data['admin_email']);
+        $admin_password = mysqli_real_escape_string($this->conn, $data['admin_password']);
+        $phone          = mysqli_real_escape_string($this->conn, $data['phone']);
+        $admin_status   = mysqli_real_escape_string($this->conn, $data['admin_status']);
+
+        $def = "+8801";
+        $mobileno = $def . $phone;
+        $query = "SELECT * FROM admin_table WHERE admin_email='$admin_email' OR phone='$phone' limit 1";
+        $res = $this->conn->query($query);
+
+        if (empty($first_name) || empty($last_name) || empty($admin_email) || empty($admin_password) || empty($phone) || empty($admin_status)) {
+            $txt = "<div class='alert alert-danger'>Field must not be empty!</div>";
+            return $txt;
+        } elseif (!preg_match("/^[a-zA-z]*$/", $first_name)) {
+            $txt = "<div class='alert alert-danger'>Only alphabets and whitespace are allowed for first name!</div>";
+            return $txt;
+        } elseif (!preg_match("/^[a-zA-z]*$/", $last_name)) {
+            $txt = "<div class='alert alert-danger'>Only alphabets and whitespace are allowed for last name!</div>";
+            return $txt;
+        } elseif (mysqli_num_rows($res) > 0) {
+            $txt = "<div class='alert alert-danger'>This Email has already been Registered!</div>";
+            return $txt;
+        } elseif (mysqli_num_rows($res) > 0) {
+            $txt = "<div class='alert alert-danger'>This mobile no. has already been Registered!</div>";
+            return $txt;
+        } elseif (strlen($phone) != 9) {
+            $txt = "<div class='alert alert-danger'>Mobile must have 9 digits!</div>";
+            return $txt;
+        } elseif (strlen($admin_password) < 6) {
+            $txt = "<div class='alert alert-danger'>Password must have 6 digits.</div>";
+            return $txt;
+        } else {
+            $qry = "INSERT into admin_table(first_name, last_name, admin_email, admin_password, phone, admin_status) values('$first_name', '$last_name','$admin_email','$admin_password','$mobileno','$admin_status')";
+            $result = $this->conn->query($qry);
+
+            if ($result) {
+                $txt = "<div class='alert alert-success'>Registered Successfully.</div>";
+                return $txt;
+            }
+        }
+    }
+
+    // View Admin
+    public function adminList()
+    {
+        $query = "SELECT * FROM admin_table where soft_delete = 0 order by admin_id DESC";
+        $result = $this->conn->query($query);
+        return $result;
+    }
+
+    // Update Admin
+    public function updateAdmin($data, $adminid)
+    {
+        $first_name = mysqli_real_escape_string($this->conn, $data['first_name']);
+        $last_name  = mysqli_real_escape_string($this->conn, $data['last_name']);
+        $phone      = mysqli_real_escape_string($this->conn, $data['phone']);
+        $def = "+8801";
+        $mobileno = $def . $phone;
+
+        if (empty($first_name) || empty($last_name) || empty($phone)) {
+            $txt = "<div class='alert alert-danger'>Field must not be empty!</div>";
+            return $txt;
+        } elseif (!preg_match("/^[a-zA-z]*$/", $first_name)) {
+            $txt = "<div class='alert alert-danger'>Only alphabets and whitespace are allowed for first name!</div>";
+            return $txt;
+        } elseif (!preg_match("/^[a-zA-z]*$/", $last_name)) {
+            $txt = "<div class='alert alert-danger'>Only alphabets and whitespace are allowed for last name!</div>";
+            return $txt;
+        } elseif (strlen($phone) != 9) {
+            $txt = "<div class='alert alert-danger'>Mobile must have 9 digits!</div>";
+            return $txt;
+        } else {
+            $query = "UPDATE admin_table
+            SET    
+            first_name      = '$first_name',
+            last_name       = '$last_name',
+            phone           = '$mobileno'
+            WHERE admin_id  = '$adminid'";
+            $result = $this->conn->query($query);
+            if ($result) {
+                $txt = "<div class='alert alert-success'>Updated Successfully.</div>";
+                return $txt;
+            }
+        }
+    }
+
+    // Delete Admin 
+    public function deleteAdmin($id)
+    {
+        $query = "UPDATE admin_table
+                SET
+                soft_delete        = '1'
+                WHERE admin_id     = $id";
+        $result = $this->conn->query($query);
+        if ($result === TRUE) {
+            $txt = "<div class='alert alert-success'>Successfully Deleted.</div>";
+            return $txt;
+        }
+    }
+
     // User registration 
     public function insertUser($data, $file)
     {
@@ -93,8 +198,6 @@ class LoginClass extends DB
             $uploaded_image = "img/" . $unique_image;
             $move_image = "img/" . $unique_image;
 
-
-
             if (empty($file_ext)) {
                 $txt = "<span style='color:red; font-size: 15px;'>Image is required</span>";
                 return $txt;
@@ -120,6 +223,7 @@ class LoginClass extends DB
             }
         }
     }
+
 
     public function insertUserAdmin($data, $file)
     {
@@ -270,6 +374,7 @@ class LoginClass extends DB
         $qry = "SELECT * FROM user_table  where flag=0 order by user_id DESC";
         return $result = $this->conn->query($qry);
     }
+
     public function userListSingle($id)
     {
 
@@ -297,6 +402,7 @@ class LoginClass extends DB
             return $txt;
         }
     }
+
     // User Login
     public function showuserdata($id)
     {
